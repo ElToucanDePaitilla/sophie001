@@ -186,3 +186,30 @@ footer nav ul {
 	margin: 2em
 }
 
+/*New styles ---------------------------------------------------------------------*/
+
+/*Liens vers les ancres des sections projets et contact*/
+
+nav ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+nav ul li a:visited {
+  text-decoration: none;
+}
+
+nav ul li:hover, nav ul li a:hover {
+  color: #000000;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+html {
+	scroll-behavior: smooth;
+  }
+
+
+
+
+
