@@ -188,6 +188,15 @@ footer nav ul {
 
 /*New styles ---------------------------------------------------------------------*/
 
+body {
+	background-color: #FFFEF8;
+}
+
+footer {
+	background-color: white
+}
+
+
 /*Survol des liens des nav ul */
 
 nav ul li a {
