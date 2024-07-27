@@ -209,12 +209,47 @@ html {
 	scroll-behavior: smooth;
   }
 
-
+/*Bouton submit: survol*/
 
   input[type="submit"]:hover {
 	background-color: #000000;
 	cursor: pointer;
   }
 
-/*Bouton submit: survol*/
+  /*Boutons filtres*/
 
+#filter-buttons-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 3em;
+  }
+  
+  #filter-buttons-container button {
+	padding: 10px 20px;
+	border: 2px solid #1d6154;
+	border-radius: 25px;
+	background-color: white;
+	color: #1d6154;
+	font-family: 'Syne';
+	font-size: 14px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+  }
+  
+  #filter-buttons-container button:active,
+  #filter-buttons-container button:hover {
+	background-color: #1d6154;
+	color: white;
+  }
+  
+  #filter-buttons-container button.active {
+	background-color: #1d6154;
+	color: white;
+  }
+
+
+  #portfolio h2 {
+	margin-top: 140px;
+	margin-bottom: 60px;
+  }
