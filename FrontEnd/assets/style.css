@@ -188,7 +188,7 @@ footer nav ul {
 
 /*New styles ---------------------------------------------------------------------*/
 
-/*Liens vers les ancres des sections projets et contact*/
+/*Survol des liens des nav ul */
 
 nav ul li a {
   text-decoration: none;
@@ -211,5 +211,10 @@ html {
 
 
 
+  input[type="submit"]:hover {
+	background-color: #000000;
+	cursor: pointer;
+  }
 
+/*Bouton submit: survol*/
 
