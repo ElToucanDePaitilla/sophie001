@@ -15,48 +15,49 @@
     <script src="assets/scripts/index.js" defer></script>
   </head>
   <body>
-    <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>       
-        <ul>
-          <li id="link-portfolio">projets</a></li>
-          <li id="link-contact">contact</a></li>
-          <li><a href="login.html" id="link-login">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
-        </ul>
-      </nav>
-    </header>
-    <main>    
-        <form action="#" method="post">
-          <label for="name">Nom</label>
-          <input type="text" name="name" id="name" />
+    <!-- Wrapper -->
+    <div class="wrapper">
+      <header>
+        <a href = "index.html" class = "logo"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
+        <nav>       
+          <ul>
+            <li id="link-portfolio">projets</li>
+            <li id="link-contact">contact</li>
+            <li><a href="login.html" id="link-login">login</a></li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+      <main id="login-content">
+            
+        <form id="login-form" action="#" method="post">
+          <h2>Log In</h2>
           <label for="email">Email</label>
           <input type="email" name="email" id="email" />
-          <label for="message">Message</label>
-          <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <label for="password">Mot de passe</label>
+          <input type="password" name="password" id="password" />
+          <input type="submit" value="Se connecter" />
+          <a href = "#"><p id="forgot-password">Mot de passe oublié</p></a>
         </form>
-    </main>
-    <footer>
-      <nav>
-        <ul>
-          <li>Mentions Légales</li>
-        </ul>
-      </nav>
-    </footer>
-
-<!--Clique des liens de la nav-->
-
-  <script>
+      </main>
+      <!-- Fin du wrapper -->
+      <footer>
+        <nav>
+          <ul>
+            <li>Mentions Légales</li>
+          </ul>
+        </nav>
+      </footer>
+  </div>
+    <script>
       document.getElementById("link-portfolio").addEventListener("click", function(event) {
-          event.preventDefault();
-          window.location.href = "index.html#portfolio";
+        event.preventDefault();
+        window.location.href = "index.html#portfolio";
       });
-
       document.getElementById("link-contact").addEventListener("click", function(event) {
-          event.preventDefault();
-          window.location.href = "index.html#contact";
+        event.preventDefault();
+        window.location.href = "index.html#contact";
       });
-  </script>
+    </script>
   </body>
 </html>

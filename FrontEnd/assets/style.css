@@ -55,6 +55,7 @@ body {
 	font-family: 'Work Sans';
 	font-size: 14px;
 }
+
 body header {
 	display: flex;
 	justify-content: space-between;
@@ -279,3 +280,71 @@ header, main {
 	width: 100%;
 	margin: auto;
 }
+
+/*Formulaire login*/
+
+#login-form {
+	position: fixed;/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	top: 50%;/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	left:50%;/*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	transform: translate(-50%, -50%); /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+	display: flex;
+	flex-direction: column;
+	max-width: 379px;
+}
+
+#login-content {
+	display: flex;
+	justify-content: center;
+}
+
+.wrapper {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+
+	align-content:space-between;
+	background-color: #FFFEF8;
+	margin-bottom: 0;
+	height: 100vh;
+    
+}
+
+#login-form h2 {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+#login-form label {
+	color: rgb(0, 0, 0);
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+
+#login-form input {
+	border: none;
+	width: 379px;
+	height: 51px;
+	margin-bottom: 30px;
+	
+}
+
+#login-form input[type="submit"] {
+	width: 179px;
+	height: 36px;
+	
+}
+
+#email, #password {
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#forgot-password {
+    text-align: center;
+	color: black;
+}
+
+.logo {
+	text-decoration: none;
+}
+
