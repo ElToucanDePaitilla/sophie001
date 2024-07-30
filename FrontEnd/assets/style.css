@@ -343,7 +343,7 @@ header, main {
 
 /*Bandeau édition*/
 
-none {
+#bandeau-edition {
 	display: none;
 	justify-content: center;
 	align-items: center;
@@ -355,10 +355,10 @@ none {
 
   .title-mode-edition {
 	 display: flex;
-	 justify-content: center;;
+	 justify-content: center;
 	 align-items: center;
 	 margin-top: 140px;
-    margin-bottom: 60px;
+     margin-bottom: 60px;
   }
 
 /*Lien mode étition*/
@@ -386,3 +386,25 @@ none {
 	display: none;/*Affichage avec le chagement de la valeur en "flex", non affichage avec la valeur "none".*/
   }
  
+
+.opening-modal {
+	font-family: "Work Sans";
+	font-size: 14px;
+	font-weight: 400;
+	display: inline-block;
+}
+
+.opening-modal span:hover {
+	cursor: pointer ;
+	font-weight: 700;
+  }
+
+#login-error {
+	text-align: center;
+	margin-top: 50px;
+}
+
+
+
+
+

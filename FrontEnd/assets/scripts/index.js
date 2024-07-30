@@ -1,3 +1,6 @@
+// !!!!!!!!!!! Vérification de l'authentification
+
+
 //####################################################################################
 //RECUPERATION DES API
 const apiUrl = "http://localhost:5678/api";
@@ -9,25 +12,6 @@ const loginUrl = `${apiUrl}/users/login`;
 //RECUPERATION DU DOM
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("Document is ready");
-
-//links depuis login.html vers indexedDB.html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // Fonction pour récupérer les catégories depuis l'API.
@@ -152,29 +136,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   fetchAndDisplayWorks();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   // Gérer la soumission du formulaire de connexion
   function handleLoginFormSubmit(event) {
     event.preventDefault(); // Empêcher le rechargement de la page
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const errorElement = document.getElementById('login-error');
 
     // Fonction pour envoyer la requête de connexion
     async function loginUser(email, password) {
@@ -192,6 +160,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Appel de la fonction ouvertureModeEdition en cas de succès
           ouvertureModeEdition(data.token); // Passez le token à la fonction si nécessaire
         } else {
+          errorElement.style.display = 'block';
           console.error('Erreur de connexion:', response.status);
         }
       } catch (error) {
@@ -199,6 +168,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     }
 
+    
     // Appel de la fonction loginUser avec les valeurs du formulaire
     loginUser(email, password);
   }
@@ -212,24 +182,32 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
 
-// Fonction pour ouvrir le mode édition
+// Fonction pour ouvrir le mode édition , gestion de l'authentification réussie
 function ouvertureModeEdition(token) {
   console.log("Mode édition ouvert avec le token:", token);
-  // Ici vous pouvez ajouter le code pour activer le mode édition
-  // en utilisant le token si nécessaire
+
+  // Stocker un indicateur dans localStorage
+  localStorage.setItem('isAuthenticated', 'true');
+
+  // Rediriger l'utilisateur vers la page index.html
+  window.location.href = "index.html";
+  
 }
 
 
+// !!!!!!!!!!! Vérification de l'authentification
 
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
+  if (isAuthenticated === 'true') {
+    // Appliquer les changements de style après la redirection
+    document.querySelector(".title-mode-edition .opening-modal").style.display = "flex";
+    document.getElementById("link-login").style.display = "none";
+    document.getElementById("bandeau-edition").style.display = "flex";
+    document.getElementById("link-logout").style.display = "flex";
 
-
-
-
-
-
-
-
-
+    // Supprimer l'indicateur de localStorage
+    localStorage.removeItem('isAuthenticated');
+  }
 
 
 });

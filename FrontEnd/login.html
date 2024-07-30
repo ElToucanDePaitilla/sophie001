@@ -18,8 +18,10 @@
     <!-- Wrapper -->
     <div class="wrapper">
       <header>
-        <a href = "index.html" class = "logo"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
-        <nav>       
+        <a href="index.html" class="logo"
+          ><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a
+        >
+        <nav>
           <ul>
             <li id="link-portfolio">projets</li>
             <li id="link-contact">contact</li>
@@ -30,7 +32,6 @@
         </nav>
       </header>
       <main id="login-content">
-            
         <form id="login-form" action="#" method="post">
           <h2>Log In</h2>
           <label for="email">Email</label>
@@ -38,7 +39,11 @@
           <label for="password">Mot de passe</label>
           <input type="password" name="password" id="password" />
           <input type="submit" value="Se connecter" />
-          <a href = "#"><p id="forgot-password">Mot de passe oublié</p></a>
+          <a href="#"><p id="forgot-password">Mot de passe oublié</p></a>
+          <p id="login-error" style="color: red; display: none">
+            Email ou mot de passe incorrect.
+          </p>
+          <!-- Message d'erreur -->
         </form>
       </main>
       <!-- Fin du wrapper -->
@@ -49,16 +54,20 @@
           </ul>
         </nav>
       </footer>
-  </div>
+    </div>
     <script>
-      document.getElementById("link-portfolio").addEventListener("click", function(event) {
-        event.preventDefault();
-        window.location.href = "index.html#portfolio";
-      });
-      document.getElementById("link-contact").addEventListener("click", function(event) {
-        event.preventDefault();
-        window.location.href = "index.html#contact";
-      });
+      document
+        .getElementById("link-portfolio")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html#portfolio";
+        });
+      document
+        .getElementById("link-contact")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html#contact";
+        });
     </script>
   </body>
 </html>
