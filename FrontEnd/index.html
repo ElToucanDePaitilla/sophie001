@@ -10,11 +10,23 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
+
+   <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+   integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+ />
+
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="assets/scripts/index.js" defer></script>
   </head>
   <body>
+    <div id = "bandeau-edition">
+      <p class="opening-modal"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Mode edition</p>
+   </div>
     <header>
       <a href = "index.html" class = "logo"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
       <nav>
@@ -22,6 +34,7 @@
           <li><a href="#portfolio" id="link-portfolio">projets</a></li>
           <li><a href="#contact" id="link-contact">contact</a></li>
           <li><a href="login.html" id="link-login">login</a></li>
+          <li><a href="login.html" id="link-logout">logout</a></li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
@@ -51,7 +64,21 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <div class="title-mode-edition">
+          <div class="left-title"></div>
+          <h2>Mes Projets&nbsp;&nbsp;</h2>
+          <div class = "right-title"><p class="opening-modal"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Mode edition</p></div>
+        </div>
+
+
+
+
+
+
+
+
+
+
         <div id="filter-buttons-container">
           <!--Les boutons de filtrage seront insérés dynamiquement ici-->
         </div>
