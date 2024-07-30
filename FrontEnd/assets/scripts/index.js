@@ -209,6 +209,42 @@ function ouvertureModeEdition(token) {
     localStorage.removeItem('isAuthenticated');
   }
 
+/*Modale*/
+
+
+//Récupération des éléments du DOM
+const modal = document.getElementById("modal");
+const openModalButton = document.getElementById("open-modal-button");
+const closeModalButton = document.getElementById("close-modal-button");
+
+//Fonction pour ouvrir la modale
+openModalButton.addEventListener("click", function () {
+  modal.style.display = "block";
+});
+
+//Fonction pour fermer la modale
+closeModalButton.addEventListener("click", function () {
+  modal.style.display = "none";
+});
+
+//Fermer la modale en cliquant en dehors de celle-ci
+window.addEventListener("click", function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
 

@@ -67,7 +67,12 @@
         <div class="title-mode-edition">
           <div class="left-title"></div>
           <h2>Mes Projets&nbsp;&nbsp;</h2>
-          <div class = "right-title"><p class="opening-modal"><i class="fa-regular fa-pen-to-square"></i> &nbsp;<span>Mode edition</span></p></div>
+          <div class="right-title">
+            <!-- NEW/NEW/NEW : Remplacement du contenu pour intégrer le bouton -->
+            <button id="open-modal-button" class="opening-modal">
+              <i class="fa-regular fa-pen-to-square"></i> &nbsp;<span>Modifier</span>
+            </button>
+          </div>
         </div>
         <div id="filter-buttons-container">
           <!--Les boutons de filtrage seront insérés dynamiquement ici-->
@@ -120,5 +125,14 @@
         </ul>
       </nav>
     </footer>
+
+<!-- Modal structure -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span id="close-modal-button" class="close-button">&times;</span>
+        <p>Contenu de la modale</p>
+      </div>
+    </div>
+
   </body>
 </html>
