@@ -10,7 +10,6 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
       rel="stylesheet"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -63,7 +62,7 @@
           </p>
           <p>
             En cas de besoin, une équipe pluridisciplinaire peut-être constituée
-            : architecte DPLG, décorateur(trice)
+            : architecte DPLG, décorateur(trice).
           </p>
         </article>
       </section>
@@ -72,7 +71,6 @@
           <div class="left-title"></div>
           <h2>Mes Projets&nbsp;&nbsp;</h2>
           <div class="right-title">
-            
             <button id="open-modal-button" class="opening-modal">
               <i class="fa-regular fa-pen-to-square"></i> &nbsp;<span
                 >Modifier</span
@@ -82,16 +80,37 @@
           <!-- Modal début -->
           <aside id="modal" class="modal">
             <div class="modal-wrapper">
-              <span id="return-modal-button" class="return-button"><i class="fa-solid fa-arrow-left"></i></span><!--X de fermeture-->
-              <span id="close-modal-button" class="close-button"><i class="fa-solid fa-xmark"></i></span><!--X de fermeture-->
+              <span id="return-modal-button" class="return-button"
+                ><i class="fa-solid fa-arrow-left"></i></span
+              ><!--X de fermeture-->
+              <span id="close-modal-button" class="close-button"
+                ><i class="fa-solid fa-xmark"></i></span
+              ><!--X de fermeture-->
               <div class="container-modal">
-                <h3 id="titre-galerie-photo">Galerie photo</h3><!--Visibilté alternative-->
-                <h3 id = "titre-ajout-photo">Ajout photo</h3><!--Visibilté alternative-->
-                <div id="galerie-element-to-delete"><img src="assets/images/hotel-first-arte-new-delhi.png" alt ="Photo test" style="Width: 100px";></div>
+                <h3 id="titre-galerie-photo">Galerie photo</h3>
+                <!--Visibilté alternative-->
+                <h3 id="titre-ajout-photo">Ajout photo</h3>
+                <!--Visibilté alternative-->
+                <div id="galerie-element-to-delete">
+                  <img
+                    src="assets/images/hotel-first-arte-new-delhi.png"
+                    alt="Photo test"
+                    style="width: 100px"
+                    ;
+                  />
+                </div>
                 <div id="formulaireTest"></div>
                 <div class="separator"></div>
-                <input type="submit" class = "ajouter-photo" value="Ajouter une photo"/><!--Visibilté alternative-->
-                <input type="submit" class = "valider" value="Valider"/><!--Visibilté alternative-->
+                <input
+                  type="submit"
+                  class="ajouter-photo"
+                  value="Ajouter une photo"
+                /><!--Visibilté alternative-->
+                <input
+                  type="submit"
+                  class="valider"
+                  value="Valider"
+                /><!--Visibilté alternative-->
               </div>
             </div>
           </aside>
@@ -130,18 +149,18 @@
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
-        <form action="#" method="post">
+        <form action="#" method="post" id="form-contact">
           <label for="name">Nom</label>
           <input type="text" name="name" id="name" />
           <label for="email">Email</label>
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer"/>
+          <input type="submit" value="Envoyer" id="envoyer" />
         </form>
       </section>
     </main>
-    <footer id = "footer">
+    <footer>
       <nav>
         <ul>
           <li>Mentions Légales</li>

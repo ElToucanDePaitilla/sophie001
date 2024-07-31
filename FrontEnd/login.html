@@ -25,7 +25,7 @@
         <nav>
           <ul>
             <li id="link-portfolio">projets</li>
-            <li>contact</li>
+            <li id="link-contact">contact</li>
             <li><a href="login.html" id="link-login">login</a></li>
             <li><a href="login.html" id="link-logout">logout</a></li>
             <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
@@ -36,9 +36,9 @@
         <form id="login-form" action="#" method="post">
           <h2>Log In</h2>
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
+          <input type="email" name="email" id="email"/>
           <label for="password">Mot de passe</label>
-          <input type="password" name="password" id="password" />
+          <input type="password" name="password" id="password"/>
           <input type="submit" value="Se connecter" />
           <a href="#"><p id="forgot-password">Mot de passe oublié</p></a>
           <p id="login-error" style="color: red; display: none">
@@ -48,7 +48,7 @@
         </form>
       </main>
       <!-- Fin du wrapper -->
-      <footer id="link-contact">
+      <footer>
         <nav>
           <ul>
             <li>Mentions Légales</li>
@@ -56,5 +56,19 @@
         </nav>
       </footer>
     </div>
+    <script>
+      document
+        .getElementById("link-portfolio")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html#portfolio";
+        });
+      document
+        .getElementById("link-contact")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          window.location.href = "index.html#contact";         
+        });
+    </script>
   </body>
 </html>

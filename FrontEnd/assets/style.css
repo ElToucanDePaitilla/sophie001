@@ -275,6 +275,10 @@ body {
   background-color: #fffef8;
 }
 
+a {
+  text-decoration: none;
+}
+
 footer {
   width: 100%;
   height: 50px;
@@ -289,7 +293,6 @@ footer {
 /*Survol des liens des nav ul */
 
 nav ul li a {
-  text-decoration: none;
   color: black;
 }
 
@@ -413,7 +416,17 @@ main {
 #forgot-password {
   text-align: center;
   color: black;
+  text-decoration: underline;
 }
+
+#forgot-password:hover {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+
+
 
 .logo {
   text-decoration: none;

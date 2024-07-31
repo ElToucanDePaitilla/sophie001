@@ -13,17 +13,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("Document is ready");
 
 
-
-
-
-
-
-
-
-
-
-  
-
 //####################################################################################
 //RECUPERATION DES CATEGORIES DEPUIS l'API 
 
@@ -149,26 +138,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetchAndDisplayWorks(categoryId);
   }
 
-//####################################################################################
-//BARRE NAV DE LA PAGE DE LOGIN
-
-function setupNavigationLinks() {
-  document.getElementById("link-portfolio")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      window.location.href = "index.html#portfolio";
-    });
-
-  document.getElementById("link-contact")
-    .addEventListener("click", function (event) {
-      event.preventDefault();
-      window.location.href = "index.html#contact";
-    });
-}
-
-setupNavigationLinks();
-
-
+  
 //####################################################################################
 //FORMULAIRE DE CONNEXION
 
@@ -269,7 +239,7 @@ window.addEventListener("click", function (event) {
   }
 });
 
-//Fonction à insérer ici : pour retourner en arrière = afficher / désafficher le contenu initial .... ?
+//Fonction pour retourner en arrière = afficher / désafficher le contenu initial .... ?
 
 }
 
@@ -277,7 +247,7 @@ window.addEventListener("click", function (event) {
  initializeModal();
 
 
- // Fonction pour vider le contenu de la div avec l'ID "galerie-element-to-delete"
+ // NEW/NEW/NEW : Fonction pour vider le contenu de la div avec l'ID "galerie-element-to-delete"
  function clearGalleryElementToDelete() {
   const galleryEtD = document.getElementById("gallery-element-to-delete");
   if (galleryEtD) {
@@ -296,6 +266,20 @@ window.addEventListener("click", function (event) {
 window.addEventListener("load", function() {
   clearGalleryElementToDelete(); // Appel de la fonction pour vider le contenu de la div
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
