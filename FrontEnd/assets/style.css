@@ -496,8 +496,10 @@ main {
 
 /* Page modale */
 .modal {
-  display: none; /* Masquer la modale par défaut */
   position: fixed;
+  display: none; /* Masquer la modale par défaut */
+  justify-content: center;
+  align-items: center;
   z-index: 1; /* Au-dessus de tout le contenu */
   left: 0;
   top: 0;
@@ -557,12 +559,10 @@ main {
   cursor: pointer;
 }
 
-/*Contenu de la boite modale*/
-
-#galerieTest {
+/*Container display de la boite modale*/
+#galerie-element-to-delete {
   width: 80%;
-  min-height: 500px;
-  height: auto;
+  height: 500px;
   background-color: #aaa;
 }
 

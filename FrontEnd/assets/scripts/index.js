@@ -13,6 +13,17 @@ document.addEventListener("DOMContentLoaded", async function () {
   console.log("Document is ready");
 
 
+
+
+
+
+
+
+
+
+
+  
+
 //####################################################################################
 //RECUPERATION DES CATEGORIES DEPUIS l'API 
 
@@ -138,7 +149,26 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetchAndDisplayWorks(categoryId);
   }
 
-  
+//####################################################################################
+//BARRE NAV DE LA PAGE DE LOGIN
+
+function setupNavigationLinks() {
+  document.getElementById("link-portfolio")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.href = "index.html#portfolio";
+    });
+
+  document.getElementById("link-contact")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.href = "index.html#contact";
+    });
+}
+
+setupNavigationLinks();
+
+
 //####################################################################################
 //FORMULAIRE DE CONNEXION
 
@@ -219,7 +249,7 @@ function initializeModal() {
 const modal = document.getElementById("modal");
 const openModalButton = document.getElementById("open-modal-button");
 const closeModalButton = document.getElementById("close-modal-button");
-const returnModalButton = document.getElementById("return-modal-button");
+//const returnModalButton = document.getElementById("return-modal-button");
 
 
 //Fonction pour ouvrir la modale
@@ -239,17 +269,38 @@ window.addEventListener("click", function (event) {
   }
 });
 
-//retourner en arrière ?????????????????????????????
-
-
-
-
-
+//Fonction à insérer ici : pour retourner en arrière = afficher / désafficher le contenu initial .... ?
 
 }
 
  // Appel de la fonction pour initialiser la modale
  initializeModal();
+
+
+ // Fonction pour vider le contenu de la div avec l'ID "galerie-element-to-delete"
+ function clearGalleryElementToDelete() {
+  const galleryEtD = document.getElementById("gallery-element-to-delete");
+  if (galleryEtD) {
+    console.log("Element found:", galleryEtD); // Log si l'élément est trouvé
+    while (galleryEtD.firstChild) {
+      console.log("Removing child:", galleryEtD.firstChild); // Log avant de supprimer chaque enfant
+      galleryEtD.removeChild(galleryEtD.firstChild); // Supprimer chaque enfant de la galerie
+    }
+    console.log("All children removed."); // Log après la suppression de tous les enfants
+  } else {
+    console.error("Element with ID 'gallery-element-to-delete' not found."); // Log si l'élément n'est pas trouvé
+  }
+}
+
+// Vérifier que l'élément existe après le chargement du DOM
+window.addEventListener("load", function() {
+  clearGalleryElementToDelete(); // Appel de la fonction pour vider le contenu de la div
+});
+
+
+
+
+
 
 
 
