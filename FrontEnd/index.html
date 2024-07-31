@@ -11,24 +11,28 @@
       rel="stylesheet"
     />
 
-   <link
-   rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-   integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-   crossorigin="anonymous"
-   referrerpolicy="no-referrer"
- />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="assets/scripts/index.js" defer></script>
   </head>
   <body>
-    <div id = "bandeau-edition">
-      <p class="opening-modal"><i class="fa-regular fa-pen-to-square"></i> &nbsp;Mode edition</p>
-   </div>
+    <div id="bandeau-edition">
+      <p class="opening-modal">
+        <i class="fa-regular fa-pen-to-square"></i> &nbsp;Mode edition
+      </p>
+    </div>
     <header>
-      <a href = "index.html" class = "logo"><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a>
+      <a href="index.html" class="logo"
+        ><h1>Sophie Bluel <span>Architecte d'intérieur</span></h1></a
+      >
       <nav>
         <ul>
           <li><a href="#portfolio" id="link-portfolio">projets</a></li>
@@ -68,11 +72,30 @@
           <div class="left-title"></div>
           <h2>Mes Projets&nbsp;&nbsp;</h2>
           <div class="right-title">
-            <!-- NEW/NEW/NEW : Remplacement du contenu pour intégrer le bouton -->
+            
             <button id="open-modal-button" class="opening-modal">
-              <i class="fa-regular fa-pen-to-square"></i> &nbsp;<span>Modifier</span>
+              <i class="fa-regular fa-pen-to-square"></i> &nbsp;<span
+                >Modifier</span
+              >
             </button>
           </div>
+          <!-- Modal début -->
+          <aside id="modal" class="modal">
+            <div class="modal-wrapper">
+              <span id="return-modal-button" class="return-button"><i class="fa-solid fa-arrow-left"></i></span><!--X de fermeture-->
+              <span id="close-modal-button" class="close-button"><i class="fa-solid fa-xmark"></i></span><!--X de fermeture-->
+              <div class="container-modal">
+                <h3 id="titre-galerie-photo">Galerie photo</h3><!--Visibilté alternative-->
+                <h3 id = "titre-ajout-photo">Ajout photo</h3><!--Visibilté alternative-->
+                <div id="galerieTest"></div>
+                <div id="formulaireTest"></div>
+                <div class="separator"></div>
+                <input type="submit" class = "ajouter-photo" value="Ajouter une photo"/><!--Visibilté alternative-->
+                <input type="submit" class = "valider" value="Valider"/><!--Visibilté alternative-->
+              </div>
+            </div>
+          </aside>
+          <!--Modal fin-->
         </div>
         <div id="filter-buttons-container">
           <!--Les boutons de filtrage seront insérés dynamiquement ici-->
@@ -114,25 +137,16 @@
           <input type="email" name="email" id="email" />
           <label for="message">Message</label>
           <textarea name="message" id="message" cols="30" rows="10"></textarea>
-          <input type="submit" value="Envoyer" />
+          <input type="submit" value="Envoyer"/>
         </form>
       </section>
     </main>
-    <footer>
+    <footer id = "footer">
       <nav>
         <ul>
           <li>Mentions Légales</li>
         </ul>
       </nav>
     </footer>
-
-<!-- Modal structure -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span id="close-modal-button" class="close-button">&times;</span>
-        <p>Contenu de la modale</p>
-      </div>
-    </div>
-
   </body>
 </html>

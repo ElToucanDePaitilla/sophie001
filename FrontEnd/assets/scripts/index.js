@@ -1,8 +1,6 @@
-// !!!!!!!!!!! Vérification de l'authentification
-
-
 //####################################################################################
 //RECUPERATION DES API
+
 const apiUrl = "http://localhost:5678/api";
 const getWorksUrl = `${apiUrl}/works`;
 const getCategoriesUrl = `${apiUrl}/categories`;
@@ -10,11 +8,14 @@ const loginUrl = `${apiUrl}/users/login`;
 
 //####################################################################################
 //RECUPERATION DU DOM
+
 document.addEventListener("DOMContentLoaded", async function () {
   console.log("Document is ready");
 
 
-  // Fonction pour récupérer les catégories depuis l'API.
+//####################################################################################
+//RECUPERATION DES CATEGORIES DEPUIS l'API 
+
   async function fetchCategories() {
     try {
       const response = await fetch(getCategoriesUrl);
@@ -25,6 +26,65 @@ document.addEventListener("DOMContentLoaded", async function () {
       return [];
     }
   }
+
+
+//####################################################################################
+//CREATION DE LA GALERIE
+
+  //Vidage du container .gallery de tous ses projets présents
+  function clearGallery() {
+    const galleryDiv = document.querySelector(".gallery"); // Sélectionner la div .gallery.
+    while (galleryDiv.firstChild) {
+      galleryDiv.removeChild(galleryDiv.firstChild); // Supprimer chaque enfant de la galerie
+    }
+  }
+
+  // Créer les éléments de la galerie Projets.
+  function createGalleryProject(project) {
+    if (!project || !project.imageUrl || !project.title) {
+      console.error("Projet invalide:", project);
+      return document.createTextNode("Projet invalide");
+    }
+    const figure = document.createElement("figure"); //C'est le conteneur formant project; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
+    const img = document.createElement("img");
+    img.src = project.imageUrl; //C'est l'image du projet; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
+    img.alt = project.title; //C'est le texte de remplacement de l'image en cas de défaut d'affichage.
+    const figcaption = document.createElement("figcaption"); // C'est le titre du projet; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
+    figcaption.textContent = project.title;
+    figure.appendChild(img); //Créé l'enfant "image du projet" dans la balise parent "figure".
+    figure.appendChild(figcaption); //Créé l'enfant "titre du projet" dans la balise parent "figure".
+    return figure; //permet de renvoyer l'élément HTML complet créé par la fonction createGalleryProject.
+  }
+
+    // Fonction pour récupérer les projets depuis l'API, puis les ajouter dans la galerie
+  async function fetchAndDisplayWorks(categoryId = "all") {
+    try {
+      // Récupération des works depuis l'API.
+      const response = await fetch(getWorksUrl);
+      const works = await response.json();
+      const galleryDiv = document.querySelector(".gallery");
+      clearGallery();
+
+      // Utilisation d'une boucle for pour créer et ajouter les éléments de la galerie.
+      works.forEach(project => {
+        if (categoryId === "all" || project.categoryId == categoryId) {
+          const galleryProject = createGalleryProject(project);
+          galleryDiv.appendChild(galleryProject);
+        }
+      });
+    } catch (error) {
+      console.error("Erreur lors de la récupération des données:", error);
+    }
+  }
+
+  // Appel des fonctions pour récupérer les catégories et créer les boutons.
+  fetchCategories().then(categories => {
+    createFilterButtons(categories);
+  });
+
+  fetchAndDisplayWorks();
+
+
 //####################################################################################
 //BOUTONS FILTRES
 
@@ -78,63 +138,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetchAndDisplayWorks(categoryId);
   }
 
-
+  
 //####################################################################################
-//GALLERY
-
-  //Vidage du container .gallery de tous ses projets présents
-  function clearGallery() {
-    const galleryDiv = document.querySelector(".gallery"); // Sélectionner la div .gallery.
-    while (galleryDiv.firstChild) {
-      galleryDiv.removeChild(galleryDiv.firstChild); // Supprimer chaque enfant de la galerie
-    }
-    console.log("Gallery cleared");
-  }
-
-  // Créer les éléments de la galerie Projets.
-  function createGalleryProject(project) {
-    if (!project || !project.imageUrl || !project.title) {
-      console.error("Projet invalide:", project);
-      return document.createTextNode("Projet invalide");
-    }
-    const figure = document.createElement("figure"); //C'est le conteneur formant project; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
-    const img = document.createElement("img");
-    img.src = project.imageUrl; //C'est l'image du projet; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
-    img.alt = project.title; //C'est le texte de remplacement de l'image en cas de défaut d'affichage.
-    const figcaption = document.createElement("figcaption"); // C'est le titre du projet; nous conservons le nom d'origine pour que le CSS continue de s'appliquer.
-    figcaption.textContent = project.title;
-    figure.appendChild(img); //Créé l'enfant "image du projet" dans la balise parent "figure".
-    figure.appendChild(figcaption); //Créé l'enfant "titre du projet" dans la balise parent "figure".
-    return figure; //permet de renvoyer l'élément HTML complet créé par la fonction createGalleryProject.
-  }
-
-    // Fonction pour récupérer les projets depuis l'API, puis les ajouter dans la galerie
-  async function fetchAndDisplayWorks(categoryId = "all") {
-    try {
-      // Récupération des works depuis l'API.
-      const response = await fetch(getWorksUrl);
-      const works = await response.json();
-      const galleryDiv = document.querySelector(".gallery");
-      clearGallery();
-
-      // Utilisation d'une boucle for pour créer et ajouter les éléments de la galerie.
-      works.forEach(project => {
-        if (categoryId === "all" || project.categoryId == categoryId) {
-          const galleryProject = createGalleryProject(project);
-          galleryDiv.appendChild(galleryProject);
-        }
-      });
-    } catch (error) {
-      console.error("Erreur lors de la récupération des données:", error);
-    }
-  }
-
-  // Appel des fonctions pour récupérer les catégories et créer les boutons.
-  fetchCategories().then(categories => {
-    createFilterButtons(categories);
-  });
-
-  fetchAndDisplayWorks();
+//FORMULAIRE DE CONNEXION
 
   // Gérer la soumission du formulaire de connexion
   function handleLoginFormSubmit(event) {
@@ -167,7 +173,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.error('Erreur lors de la requête:', error);
       }
     }
-
     
     // Appel de la fonction loginUser avec les valeurs du formulaire
     loginUser(email, password);
@@ -181,7 +186,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     console.error("Le formulaire de connexion n'a pas été trouvé.");
   }
 
-
 // Fonction pour ouvrir le mode édition , gestion de l'authentification réussie
 function ouvertureModeEdition(token) {
   console.log("Mode édition ouvert avec le token:", token);
@@ -191,9 +195,7 @@ function ouvertureModeEdition(token) {
 
   // Rediriger l'utilisateur vers la page index.html
   window.location.href = "index.html";
-  
 }
-
 
 // !!!!!!!!!!! Vérification de l'authentification
 
@@ -209,13 +211,16 @@ function ouvertureModeEdition(token) {
     localStorage.removeItem('isAuthenticated');
   }
 
-/*Modale*/
+//####################################################################################
+//Modale
 
-
+function initializeModal() {
 //Récupération des éléments du DOM
 const modal = document.getElementById("modal");
 const openModalButton = document.getElementById("open-modal-button");
 const closeModalButton = document.getElementById("close-modal-button");
+const returnModalButton = document.getElementById("return-modal-button");
+
 
 //Fonction pour ouvrir la modale
 openModalButton.addEventListener("click", function () {
@@ -234,14 +239,17 @@ window.addEventListener("click", function (event) {
   }
 });
 
+//retourner en arrière ?????????????????????????????
 
 
 
 
 
 
+}
 
-
+ // Appel de la fonction pour initialiser la modale
+ initializeModal();
 
 
 

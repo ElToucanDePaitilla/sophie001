@@ -353,7 +353,7 @@ main {
   width: 100%;
   margin: auto;
 }
-
+/*####################################################################################*/
 /*Formulaire login*/
 
 #login-form {
@@ -418,8 +418,10 @@ main {
 .logo {
   text-decoration: none;
 }
+/*####################################################################################*/
+/*MODE EDITION : BANDEAU MODE EDITION ET BOUTON MODIFIER*/
 
-/*Bandeau édition*/
+/*Bandeau mode édition*/
 
 #bandeau-edition {
   display: none;
@@ -439,7 +441,7 @@ main {
   margin-bottom: 60px;
 }
 
-/*Lien mode étition*/
+/*Lien "Modifier"*/
 
 .left-title {
   width: 33.3%;
@@ -456,6 +458,25 @@ main {
   display: none; /*Affichage avec le chagement de la valeur en "flex", non affichage avec la valeur "none".*/
 }
 
+/*Styles pour le bouton "Modifier"*/
+.opening-modal {
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-weight: 400;
+  display: inline-block;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+.opening-modal span:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/*####################################################################################*/
+/*PAGE LOGIN*/
+
 #link-login {
   display: flex; /*Affichage avec le chagement de la valeur en "flex", non affichage avec la valeur "none".*/
 }
@@ -465,24 +486,15 @@ main {
   margin-left: -15px;
 }
 
-.opening-modal {
-  font-family: "Work Sans";
-  font-size: 14px;
-  font-weight: 400;
-  display: inline-block;
-}
-
-.opening-modal span:hover {
-  cursor: pointer;
-  font-weight: 700;
-}
-
 #login-error {
   text-align: center;
   margin-top: 50px;
 }
 
-/* Styles pour la modale */
+/*####################################################################################*/
+/*MODALE*/
+
+/* Page modale */
 .modal {
   display: none; /* Masquer la modale par défaut */
   position: fixed;
@@ -496,22 +508,30 @@ main {
   background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent */
 }
 
-.modal-content {
+/* Boite modale */
+.modal-wrapper {
+  box-sizing: border-box;
+  overflow: auto;
   background-color: #fefefe;
+  border-radius: 10px;
   margin: 15% auto; /* 15% à partir du haut et centré horizontalement */
   padding: 20px;
   border: 1px solid #888;
-  width: 40%; /* 40% de la largeur de la fenêtre */
-  height: 60%; /* 60% de la hauteur de la fenêtre */
+  width: 800px;
+  max-width: calc(100vw - 100px);
+  max-height: calc(100vw - 100px);
 }
 
+/*Bouton "X" fermeture fenêtre*/
 .close-button {
   color: #aaa;
   float: right;
+  margin-right: 20px;
   font-size: 28px;
   font-weight: bold;
 }
 
+/*Survol du bouton du bouton "X"*/
 .close-button:hover,
 .close-button:focus {
   color: black;
@@ -519,19 +539,76 @@ main {
   cursor: pointer;
 }
 
-/* Styles pour le bouton "Modifier" */
-.opening-modal {
-  font-family: "Work Sans";
-  font-size: 14px;
-  font-weight: 400;
-  display: inline-block;
-  background: none;
-  border: none;
-  color: inherit;
+/*Bouton "<-" return*/
+.return-button {
+  visibility: hidden; /* Masquer le bouton retour par défaut.*/
+  color: #aaa;
+  float: left;
+  margin-left: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/*Survol du bouton du bouton "<-" */
+.return-button:hover,
+.return-button:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
 }
 
-.opening-modal span:hover {
-  cursor: pointer;
-  font-weight: 700;
+/*Contenu de la boite modale*/
+
+#galerieTest {
+  width: 80%;
+  min-height: 500px;
+  height: auto;
+  background-color: #aaa;
+}
+
+.container-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+}
+
+h3 {
+  font-size: 26px;
+  font-weight: 400px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.separator {
+  width: 80%;
+  height: 3px;
+  background-color: #aaa;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/*Bouton Ajouter une photo*/
+.ajouter-photo {
+  display: flex;
+  width: 180px;
+  height: 30px;
+  border-style: none;
+}
+
+/*Bouton Valider*/
+.valider {
+  display: none;
+  width: 180px;
+  height: 30px;
+  border-style: none;
+}
+
+#titre-galerie-photo {
+  display: flex;
+}
+
+#titre-ajout-photo {
+  display: none;
 }
