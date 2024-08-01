@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* NEW/NEW/NEW : Inclure la bordure et le padding dans la taille totale des éléments */
+}
+
+#delete-gallery {
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;  
+    flex-wrap: wrap;
+    width: 435px;
+    background-color: rgb(235, 235, 235);
+}
+
+#element-fusionne {
+    position: relative;
+    width: 76.61px;
+    margin-bottom: 5px;
+    margin: 5px;  
+}
+
+img {
+    width: 76.61px;
+}
+
+.fond-icone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* NEW/NEW/NEW : Position absolue pour placer l'élément par rapport au conteneur parent */
+    top: 5px;
+    right: 5px;
+    width: 17px;
+    height: 17px;
+    background-color: black;
+    border-radius: 3px;
+}
+
+.icone {  
+    font-size: 10px; 
+}
+
+.fond-icone:hover {
+    background-color: red;
+    cursor: pointer;
+}
