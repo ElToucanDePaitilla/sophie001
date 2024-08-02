@@ -532,7 +532,7 @@ main {
   margin: 15% auto; /* 15% à partir du haut et centré horizontalement */
   padding: 20px;
   border: 1px solid #888;
-  width: 800px;
+  width: 630px;
   max-width: calc(100vw - 100px);
   max-height: calc(100vw - 100px);
 }
@@ -595,11 +595,11 @@ h3 {
 }
 
 .separator {
-  width: 80%;
+  width: 85%;
   height: 3px;
   background-color: #aaa;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 60px;
+  margin-bottom: 10px;
 }
 
 /*Bouton Ajouter une photo*/
@@ -635,7 +635,7 @@ h3 {
   justify-content:flex-start;  
   flex-wrap: wrap;
   width: 435px;
-  background-color: rgb(235, 235, 235);
+  background-color: rgba(235, 235, 235, 0);
 }
 
 #element-fusionne {
