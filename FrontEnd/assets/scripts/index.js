@@ -143,60 +143,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   //####################################################################################
   //FORMULAIRE DE CONNEXION
 
-  // Gérer la soumission du formulaire de connexion
-  function handleLoginFormSubmit(event) {
-    event.preventDefault(); // Empêcher le rechargement de la page
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const errorElement = document.getElementById("login-error");
-
-    // Fonction pour envoyer la requête de connexion
-    async function loginUser(email, password) {
-      try {
-        const response = await fetch(loginUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          localStorage.setItem("authToken", data.token); // NEW/NEW/NEW : Stocker le token
-          ouvertureModeEdition(data.token); // Passez le token à la fonction si nécessaire
-        } else {
-          errorElement.style.display = "block";
-          console.error("Erreur de connexion:", response.status);
-        }
-      } catch (error) {
-        console.error("Erreur lors de la requête:", error);
-      }
-    }
-
-    // Appel de la fonction loginUser avec les valeurs du formulaire
-    loginUser(email, password);
-  }
-
-  // Ajout de l'écouteur d'événement de soumission au formulaire
-  const loginForm = document.getElementById("login-form");
-  if (loginForm) {
-    loginForm.addEventListener("submit", handleLoginFormSubmit);
-  } else {
-    /*console.error("Le formulaire de connexion n'a pas été trouvé."); bug à corriger ???????????????*/
-  }
-
-  // Fonction pour ouvrir le mode édition , gestion de l'authentification réussie
-  function ouvertureModeEdition(token) {
-    console.log("Mode édition ouvert avec le token:", token);
+ 
 
     // Stocker un indicateur dans localStorage
-    localStorage.setItem("isAuthenticated", "true");
-
-    // Rediriger l'utilisateur vers la page index.html
-    window.location.href = "index.html";
-  }
 
   // !!!!!!!!!!! Vérification de l'authentification
 
@@ -210,8 +159,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("link-logout").style.display = "flex";
 
     // Supprimer l'indicateur de localStorage
+    
+
+
+  } else {
     localStorage.removeItem("isAuthenticated");
   }
+
+
 
   //####################################################################################
   //Modale
@@ -224,12 +179,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     //const returnModalButton = document.getElementById("return-modal-button");
 
     //Fonction pour ouvrir la modale
-    openModalButton.addEventListener("click", function () {
+    openModalButton.addEventListener("click", function (event) {
+      event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
       modal.style.display = "block";
     });
 
     //Fonction pour fermer la modale
-    closeModalButton.addEventListener("click", function () {
+    closeModalButton.addEventListener("click", function (event) {
+      event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
       modal.style.display = "none";
     });
 
@@ -277,7 +234,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     works.forEach((work) => {
       const elementFusionne = document.createElement("div");
       elementFusionne.id = "element-fusionne";
-      elementFusionne.dataset.id = work.id; // NEW/NEW/NEW : Stocker l'ID de l'objet
+      elementFusionne.dataset.id = work.id; // Stocker l'ID de l'objet
 
       const img = document.createElement("img");
       img.className = "images";
@@ -297,7 +254,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       deleteGallery.appendChild(elementFusionne);
 
       // Ajouter l'événement de clic pour supprimer l'objet
-      elementFusionne.addEventListener("click", async () => {
+      elementFusionne.addEventListener("click", async (event) => {
+        event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
         await deleteWork(work.id, elementFusionne);
       });
     });
