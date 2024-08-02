@@ -1,3 +1,4 @@
+// index.js
 //####################################################################################
 //RECUPERATION DES API
 
@@ -143,12 +144,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   //####################################################################################
   //FORMULAIRE DE CONNEXION
 
- 
-
     // Stocker un indicateur dans localStorage
 
-  // !!!!!!!!!!! Vérification de l'authentification
-
+  // NEW/NEW/NEW : Vérification de l'authentification
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   if (isAuthenticated === "true") {
     // Appliquer les changements de style après la redirection
@@ -157,16 +155,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     document.getElementById("link-login").style.display = "none";
     document.getElementById("bandeau-edition").style.display = "flex";
     document.getElementById("link-logout").style.display = "flex";
-
-    // Supprimer l'indicateur de localStorage
-    
-
-
   } else {
     localStorage.removeItem("isAuthenticated");
   }
 
+  // NEW/NEW/NEW : Fonction pour gérer la déconnexion
+  function handleLogout() {
+    localStorage.removeItem("authToken"); // Supprimer le token
+    localStorage.removeItem("isAuthenticated"); // Supprimer l'état d'authentification
+    window.location.href = "login.html"; // Rediriger vers la page de connexion
+  }
 
+  // NEW/NEW/NEW : Ajouter un écouteur d'événement au bouton de déconnexion
+  const logoutButton = document.getElementById("link-logout");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Empêcher le comportement par défaut du lien
+      handleLogout(); // Appeler la fonction de déconnexion
+    });
+  }
 
   //####################################################################################
   //Modale
