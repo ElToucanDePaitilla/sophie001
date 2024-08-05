@@ -1,5 +1,6 @@
 //####################################################################################
 //RECUPERATION DES API
+//####################################################################################
 
 const apiUrl = "http://localhost:5678/api";
 const getWorksUrl = `${apiUrl}/works`;
@@ -9,12 +10,14 @@ const deleteWorksUrl = `${apiUrl}/works`;
 
 //####################################################################################
 //RECUPERATION DU DOM
+//####################################################################################
 
 document.addEventListener("DOMContentLoaded", async function () {
-  console.log("Document is ready");
+console.log("Document is ready");
 
-  //####################################################################################
-  //RECUPERATION DES CATEGORIES DEPUIS l'API
+//####################################################################################
+//RECUPERATION DES CATEGORIES DEPUIS l'API
+//####################################################################################
 
   async function fetchCategories() {
     try {
@@ -27,8 +30,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-  //####################################################################################
-  //CREATION DE LA GALERIE
+//####################################################################################
+//CREATION DE LA GALERIE
+//####################################################################################
 
   //Vidage du container .gallery de tous ses projets présents
   function clearGallery() {
@@ -83,10 +87,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   fetchAndDisplayWorks();
 
-  //####################################################################################
-  //BOUTONS FILTRES
-
-  //Fonction pour créer les boutons de filtrage des projets.
+//####################################################################################
+// BOUTONS FILTRES
+//####################################################################################
+ 
+//Fonction pour créer les boutons de filtrage des projets.
   function createFilterButtons(categories) {
     const filterButtonsContainer = document.getElementById(
       "filter-buttons-container"
@@ -140,12 +145,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetchAndDisplayWorks(categoryId);
   }
 
-  //####################################################################################
-  //FORMULAIRE DE CONNEXION
+//####################################################################################
+//FORMULAIRE DE CONNEXION
+//####################################################################################
 
-    // Stocker un indicateur dans localStorage
-
-  // NEW/NEW/NEW : Vérification de l'authentification
+  // Vérification de l'authentification
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   if (isAuthenticated === "true") {
     // Appliquer les changements de style après la redirection
@@ -158,14 +162,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     localStorage.removeItem("isAuthenticated");
   }
 
-  // NEW/NEW/NEW : Fonction pour gérer la déconnexion
+  //Fonction pour gérer la déconnexion
   function handleLogout() {
     localStorage.removeItem("authToken"); // Supprimer le token
     localStorage.removeItem("isAuthenticated"); // Supprimer l'état d'authentification
     window.location.href = "login.html"; // Rediriger vers la page de connexion
   }
 
-  // NEW/NEW/NEW : Ajouter un écouteur d'événement au bouton de déconnexion
+  // Ajouter un écouteur d'événement au bouton de déconnexion
   const logoutButton = document.getElementById("link-logout");
   if (logoutButton) {
     logoutButton.addEventListener("click", function (event) {
@@ -174,8 +178,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
-  //####################################################################################
-  //Modale
+//####################################################################################
+//FENETRE MODALE - GALERIE PHOTO
+//####################################################################################
 
   function initializeModal() {
     //Récupération des éléments du DOM
@@ -184,34 +189,28 @@ document.addEventListener("DOMContentLoaded", async function () {
     const closeModalButton = document.getElementById("close-modal-button");
     //const returnModalButton = document.getElementById("return-modal-button");
 
-    //Fonction pour ouvrir la modale
+    // ouvrir la modale
     openModalButton.addEventListener("click", function (event) {
-      event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
+      event.preventDefault(); // Empêcher le comportement par défaut
       modal.style.display = "block";
     });
 
-    //Fonction pour fermer la modale
+    // fermer la modale
     closeModalButton.addEventListener("click", function (event) {
-      event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
+      event.preventDefault(); // Empêcher le comportement par défaut
       modal.style.display = "none";
     });
 
-    //Fermer la modale en cliquant en dehors de celle-ci
+    // fermer la modale en cliquant en dehors de celle-ci
     window.addEventListener("click", function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     });
-
-    // Fonction pour retourner en arrière = afficher / désafficher le contenu initial .... ?
   }
 
   // Appel de la fonction pour initialiser la modale
   initializeModal();
-
-  //####################################################################################
-  //GALERIE DELETE
-  //####################################################################################
 
   // Fonction pour vider #delete-gallery de tous ses éléments
   function clearDeleteGallery() {
@@ -304,13 +303,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   clearDeleteGallery();
   displayWorksInGallery();
 
-
-
-
-
-// Fonction màj box-modal ajout de photo
-
-
+//####################################################################################
+//FENETRE MODALE - AJOUT PHOTO
+//####################################################################################
 
 // Fonction pour initialiser les écouteurs d'événements
 function initializeAddPhotoButton() {
@@ -346,6 +341,7 @@ function showReturnButton() {
   }
 }
 
+// Fonction pour masquer le titre "Galerie Photo"
 function hideGalleryPhotoTitle() {
   const galleryPhotoTitle = document.getElementById("titre-galerie-photo");
   if (galleryPhotoTitle) {
@@ -355,6 +351,7 @@ function hideGalleryPhotoTitle() {
   }
 }
 
+// Fonction pour afficher le titre "Ajout photo"
 function displayAddPhotoTitle() {
   const addPhotoTitle = document.getElementById("titre-ajout-photo");
   if (addPhotoTitle) {
@@ -364,6 +361,7 @@ function displayAddPhotoTitle() {
   }
 }
 
+// Fonction pour masquer la galerie exposant les photos à supprimer
 function hideDeleteGallery() {
   const deleteGallery = document.getElementById("delete-gallery");
   if (deleteGallery) {
@@ -373,6 +371,7 @@ function hideDeleteGallery() {
   }
 }
 
+// Fonction pour masquer le bouton "Ajouter une photo"
 function hidePhotoAddButton() {
   const photoAddButton = document.getElementById("ajouter-une-photo");
   if (photoAddButton) {
@@ -382,6 +381,7 @@ function hidePhotoAddButton() {
   }
 }
 
+// Fonction pour afficher le container contenant tous les éléments principaux de la fenêtre modale
 function displayPhotoContainer() {
   const photoContainer = document.getElementById("container-ajout-photo");
   if (photoContainer) {
@@ -391,9 +391,7 @@ function displayPhotoContainer() {
   }
 }
 
-//id="bouton-valider-crea">Valider</button><!--Visibilté alternative-->
-
-
+// Fonction pour afficher le bouton "Valider"
 function displayCreaValidationButton() {
   const creaValidationButton = document.getElementById("bouton-valider-crea");
   if (creaValidationButton) {
@@ -402,33 +400,6 @@ function displayCreaValidationButton() {
     console.error("Le bouton 'Valider' n'a pas été trouvé.");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
