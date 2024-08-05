@@ -1,4 +1,3 @@
-// index.js
 //####################################################################################
 //RECUPERATION DES API
 
@@ -286,7 +285,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       if (response.ok) {
         console.log(`L'objet avec l'id ${id} a été supprimé.`);
-        element.remove(); // NEW/NEW/NEW : Supprimer l'élément de la galerie
+        element.remove(); // Supprimer l'élément de la galerie
       } else {
         console.error(
           `Erreur de suppression pour l'objet avec l'id ${id}:`,
@@ -304,4 +303,136 @@ document.addEventListener("DOMContentLoaded", async function () {
   // Appeler les fonctions pour initialiser la galerie
   clearDeleteGallery();
   displayWorksInGallery();
+
+
+
+
+
+// Fonction màj box-modal ajout de photo
+
+
+
+// Fonction pour initialiser les écouteurs d'événements
+function initializeAddPhotoButton() {
+  // Sélectionner le bouton avec l'ID 'ajouter-une-photo'
+  const addPhotoButton = document.getElementById("ajouter-une-photo");
+
+  if (addPhotoButton) {
+    // Ajouter un écouteur d'événements pour le clic
+    addPhotoButton.addEventListener("click", function() {
+      showReturnButton(); // Afficher le bouton de retour
+      hideGalleryPhotoTitle(); // Cacher le titre de la galerie photo
+      displayAddPhotoTitle(); // Afficher le titre d'ajout de photo
+      hideDeleteGallery(); // Cacher la galerie de suppression
+      hidePhotoAddButton();// Cacher le bouton "ajouter-une-photo"
+      displayCreaValidationButton()// Afficher le bouton "Valider"
+      displayPhotoContainer();// Afficher le container ajout photo
+    });
+  } else {
+    console.error("Le bouton 'Ajouter une photo' n'a pas été trouvé.");
+  }
+}
+
+// Appeler la fonction pour initialiser les écouteurs d'événements
+initializeAddPhotoButton(); // Initialiser les écouteurs d'événements
+
+// Fonction pour afficher le bouton de retour lorsque le bouton "Ajouter une photo" est cliqué
+function showReturnButton() {
+  const returnButton = document.getElementById("return-modal-button");
+  if (returnButton) {
+    returnButton.style.visibility = "visible";
+  } else {
+    console.error("Le bouton de retour n'a pas été trouvé.");
+  }
+}
+
+function hideGalleryPhotoTitle() {
+  const galleryPhotoTitle = document.getElementById("titre-galerie-photo");
+  if (galleryPhotoTitle) {
+    galleryPhotoTitle.style.display = "none";
+  } else {
+    console.error("Le titre 'Galerie photo' n'a pas été trouvé.");
+  }
+}
+
+function displayAddPhotoTitle() {
+  const addPhotoTitle = document.getElementById("titre-ajout-photo");
+  if (addPhotoTitle) {
+    addPhotoTitle.style.display = "flex";
+  } else {
+    console.error("Le titre 'Ajout photo' n'a pas été trouvé.");
+  }
+}
+
+function hideDeleteGallery() {
+  const deleteGallery = document.getElementById("delete-gallery");
+  if (deleteGallery) {
+    deleteGallery.style.display = "none";
+  } else {
+    console.error("Le 'delete-gallery' n'a pas été trouvé.");
+  }
+}
+
+function hidePhotoAddButton() {
+  const photoAddButton = document.getElementById("ajouter-une-photo");
+  if (photoAddButton) {
+    photoAddButton.style.display = "none";
+  } else {
+    console.error("Le bouton 'ajouter-une-photo' n'a pas été trouvé.");
+  }
+}
+
+function displayPhotoContainer() {
+  const photoContainer = document.getElementById("container-ajout-photo");
+  if (photoContainer) {
+    photoContainer.style.display = "flex";
+  } else {
+    console.error("'container-ajout-photo' n'a pas été trouvé.");
+  }
+}
+
+//id="bouton-valider-crea">Valider</button><!--Visibilté alternative-->
+
+
+function displayCreaValidationButton() {
+  const creaValidationButton = document.getElementById("bouton-valider-crea");
+  if (creaValidationButton) {
+    creaValidationButton.style.display = "flex";
+  } else {
+    console.error("Le bouton 'Valider' n'a pas été trouvé.");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 });

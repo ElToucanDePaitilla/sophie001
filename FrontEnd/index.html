@@ -80,9 +80,10 @@
           </div>
           <!----------------------------Modal début ------------------------->
           <aside id="modal" class="modal">
+            
             <div class="modal-wrapper">
               <!--Icone flèche retour-->
-              <span id="return-modal-button" class="return-button"
+              <span id="return-modal-button"
                 ><i class="fa-solid fa-arrow-left"></i></span
               >
               <!--Icone X de fermeture-->
@@ -90,150 +91,166 @@
                 ><i class="fa-solid fa-xmark"></i></span
               >
               <div class="container-modal">
-                <h3 id="titre-galerie-photo">Galerie photo</h3>
-                <!--Visibilté alternative-->
-                <h3 id="titre-ajout-photo">Ajout photo</h3>
-                <!--Visibilté alternative-->
+                <h3 id="titre-galerie-photo">Galerie photo</h3><!--Visibilté alternative-->
+                <h3 id="titre-ajout-photo">Ajout photo</h3><!--Visibilté alternative-->          
+                <div id="delete-gallery"><!--Visibilté alternative-->
+                  <div id="element-fusionne"><!--vignette + icône trash can sur fond noir-->
+                  <!--Ces élements restent en place pour tester visuellement le vidage de la galerie-->  
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                  <div id="element-fusionne">
+                    <img
+                      class="images"
+                      src="assets/images/abajour-tahina.png"
+                      alt="Abat jour"
+                    />
+                    <div class="fond-icone">
+                      <i
+                        class="fa-solid fa-trash-can icone"
+                        style="color: #ffffff"
+                      ></i>
+                    </div>
+                  </div>
+                </div><!--Fin de galery-delete-->
+                <div id="container-ajout-photo"><!--Visibilté alternative-->
+                  
+                  <!--Container + Ajouter photo -->
+                  <div id="fenetre-ajout-photo">
+                    <i class="fa-regular fa-image" style="color:#B9C5CC;
+                    font-size: 68px; margin-top: 20px";></i>
+                    <button id="bouton-plus-ajouter-photo">+ Ajouter photo</button>
+                    <p>jpg, png: 4 mo max</p>
+                  </div>
+
+                  <!--Création du Titre accompagnant la photo à ajouter-->
+                  <form id="crea-titre-projet">
+                    <label for="crea-titre-projet">Titre</label>
+                    <input type="text"  name="crea-titre-projet" maxlength="70">
+                  </form>
+
+                   <!--Sélection de la catégorie de la photo à ajouter-->
+                  <form id="créa-catégorie-projet">
+                    <label for="categorie">Catégorie</label>
+                    <select id="categorie" name="categorie"> <!-- Liste déroulante -->
+                        <option value="" disabled selected></option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                  </form>
+                  
 
 
 
 
 
 
-
-
-                
-                <div id="delete-gallery">
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
                 </div>
-                <div id="formulaireTest"></div>
                 <div class="separator"></div>
-                <input
-                  type="submit"
-                  class="ajouter-photo"
-                  value="Ajouter une photo"
-                /><!--Visibilté alternative-->
-                <input
-                  type="submit"
-                  class="valider"
-                  value="Valider"
-                /><!--Visibilté alternative-->
+                <button id="ajouter-une-photo">Ajouter une photo</button><!--Visibilté alternative-->
+                <button id="bouton-valider-crea">Valider</button><!--Visibilté alternative-->
+               
               </div>
             </div>
          </aside><!----------------------------Modal fin ------------------------->
