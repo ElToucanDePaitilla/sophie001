@@ -8,6 +8,8 @@ const getCategoriesUrl = `${apiUrl}/categories`;
 const loginUrl = `${apiUrl}/users/login`;
 const deleteWorksUrl = `${apiUrl}/works`;
 
+
+
 //####################################################################################
 //RECUPERATION DU DOM
 //####################################################################################
@@ -402,6 +404,54 @@ function displayCreaValidationButton() {
 }
 
 
+//####################################################################################
+//UPLOAD - AJOUT PHOTO
+//####################################################################################
+
+
+
+
+document.getElementById('bouton-plus-ajouter-photo').addEventListener('click', function() {
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = '.jpg,.png';
+  fileInput.style.display = 'none';
+
+  fileInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      if (file.size > 4 * 1024 * 1024) {
+        alert('Le fichier doit être inférieur à 4 Mo');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = 'Image uploadée';
+        img.style.height = '100%';
+        img.style.width = 'auto'; // NEW/NEW/NEW : La hauteur de l'image occupe 100% de la hauteur de #fenetre-ajout-photo
+        img.style.display = 'block'; // NEW/NEW/NEW : Afficher le block
+        img.style.margin = 'auto'; // NEW/NEW/NEW : Centré horizontalement
+
+        const fenetreAjoutPhoto = document.getElementById('fenetre-ajout-photo');
+        fenetreAjoutPhoto.innerHTML = ''; // NEW/NEW/NEW : Vider le contenu existant
+        fenetreAjoutPhoto.appendChild(img); // NEW/NEW/NEW : Ajouter l'image
+
+        // NEW/NEW/NEW : Cacher les éléments spécifiques
+        document.querySelector('#fenetre-ajout-photo i').style.visibility = 'hidden';
+        document.getElementById('bouton-plus-ajouter-photo').style.visibility = 'hidden';
+        document.querySelector('#fenetre-ajout-photo p').style.visibility = 'hidden';
+      }
+      reader.readAsDataURL(file);
+    } else {
+      alert('Le fichier doit être au format .jpg ou .png');
+    }
+  });
+
+  fileInput.click();
+});
 
 
 

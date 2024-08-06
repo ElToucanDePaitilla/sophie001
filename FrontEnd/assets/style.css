@@ -425,13 +425,11 @@ main {
   text-decoration: none;
 }
 
-
-
-
-
 .logo {
   text-decoration: none;
 }
+
+
 /*####################################################################################*/
 /*MODE EDITION : BANDEAU MODE EDITION ET BOUTON MODIFIER*/
 
@@ -627,19 +625,6 @@ h3 {
   background-color:#0E2F28;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-}
-
 /*Bouton Valider*/
 .valider {
   display: none;
@@ -700,6 +685,7 @@ img {
   background-color: red;
   cursor: pointer;
 }
+
 /*############################################################################*/
 /*Contenu "Ajout photo" dans la box modal*/
 
@@ -760,7 +746,21 @@ select {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+#fenetre-ajout-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 420px;
+  height: 169px;
+  background-color: #E8F1F6;
+}
+
+#fenetre-ajout-photo i {
+  visibility: visible;
+}
+
 #bouton-plus-ajouter-photo {
+  visibility: visible;
   width: 173px;
   height: 36px;
   margin-top: 10px;;
@@ -774,16 +774,8 @@ select {
   transition: background-color 0.3s, color 0.3s;
 }
 
-#fenetre-ajout-photo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 420px;
-  height: 169px;
-  background-color: #E8F1F6;
-}
-
 #fenetre-ajout-photo p {
+  visibility: visible;
   color: #444444;
   font-size: 10px;
   font-weight: 400px;
@@ -809,4 +801,6 @@ select {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
+#bouton-valider-crea:hover {
+  background-color: #A7A7A7;/*changement du background-color lors du clic js*/
+  }
