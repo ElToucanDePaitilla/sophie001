@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="./assets/style.css" />
     <script src="assets/scripts/index.js" defer></script>
     <script src="assets/scripts/login.js" defer></script>
-
+    <script src="assets/scripts/modal.js" defer></script>
   </head>
   <body>
     <div id="bandeau-edition">
@@ -82,11 +82,11 @@
           <aside id="modal" class="modal">
             
             <div class="modal-wrapper">
-              <!--Icone flèche retour-->
+              <!--Bouton flèche retour-->
               <span id="return-modal-button"
                 ><i class="fa-solid fa-arrow-left"></i></span
               >
-              <!--Icone X de fermeture-->
+              <!--Bouton X de fermeture-->
               <span id="close-modal-button" class="close-button"
                 ><i class="fa-solid fa-xmark"></i></span
               >
@@ -95,111 +95,7 @@
                 <h3 id="titre-ajout-photo">Ajout photo</h3><!--Visibilté alternative-->          
                 <div id="delete-gallery"><!--Visibilté alternative-->
                   <div id="element-fusionne"><!--vignette + icône trash can sur fond noir-->
-                  <!--Ces élements restent en place pour tester visuellement le vidage de la galerie-->  
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
-                    <img
-                      class="images"
-                      src="assets/images/abajour-tahina.png"
-                      alt="Abat jour"
-                    />
-                    <div class="fond-icone">
-                      <i
-                        class="fa-solid fa-trash-can icone"
-                        style="color: #ffffff"
-                      ></i>
-                    </div>
-                  </div>
-                  <div id="element-fusionne">
+                  <!--Cet élement reste en place pour tester visuellement le vidage de la galerie-->  
                     <img
                       class="images"
                       src="assets/images/abajour-tahina.png"
@@ -228,23 +124,17 @@
                     <label for="crea-titre-projet">Titre</label>
                     <input type="text"  name="crea-titre-projet" maxlength="70">
                   </form>
-
                    <!--Sélection de la catégorie de la photo à ajouter-->
                   <form id="créa-catégorie-projet">
                     <label for="categorie">Catégorie</label>
                     <select id="categorie" name="categorie"> <!-- Liste déroulante -->
-                        <option value="" disabled selected></option>
-                        <option value="option1">Objets</option>
-                        <option value="option2">Appartements</option>
-                        <option value="option3">Hotels & restaurants</option>
+                    <!--Insertion dynamique ici des options de catégories-->     
                     </select>
                   </form>
-            
                 </div>
                 <div class="separator"></div>
                 <button id="ajouter-une-photo">Ajouter une photo</button><!--Visibilté alternative-->
-                <button id="bouton-valider-crea">Valider</button><!--Visibilté alternative-->
-               
+                <button id="bouton-valider-crea">Valider</button><!--Visibilté alternative-->       
               </div>
             </div>
          </aside><!----------------------------Modal fin ------------------------->
@@ -254,26 +144,7 @@
           <!--Les boutons de filtrage seront insérés dynamiquement ici-->
         </div>
         <div class="gallery">
-          <figure>
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-            <figcaption>Abajour Tahina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-            <figcaption>Abajour Tahina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-            <figcaption>Abajour Tahina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-            <figcaption>Abajour Tahina</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-            <figcaption>Abajour Tahina</figcaption>
-          </figure>
+          <!--La galerie sera vidée dynamiquement des actuels projets, et les nouveaux projets seront insérés dynamiquement ici depuis l'API-->
           <figure>
             <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
             <figcaption>Abajour Tahina</figcaption>
@@ -293,6 +164,13 @@
           <input type="submit" value="Envoyer" id="envoyer" />
         </form>
       </section>
+
+
+
+
+
+
+
     </main>
     <footer>
       <nav>

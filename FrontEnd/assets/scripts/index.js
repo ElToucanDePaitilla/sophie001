@@ -403,23 +403,52 @@ function displayCreaValidationButton() {
   }
 }
 
+//Fonction pour récupérer les catégories depuis l'API
+async function fetchCategories() {
+  const apiUrl = "http://localhost:5678/api";
+  const getCategoriesUrl = `${apiUrl}/categories`;
 
+  try {
+      const response = await fetch(getCategoriesUrl);
+      if (!response.ok) {
+          throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
+      }
+      const categories = await response.json();
+      console.log("Catégories récupérées avec succès :", categories); // Log pour vérifier les données récupérées
+      return categories;
+  } catch (error) {
+      console.error("Erreur lors de la récupération des catégories :", error);
+      return [];
+  }
+}
 
+//Fonction pour créer les éléments <option> et les ajouter au <select>
+async function populateCategoryOptions() {
+  const categories = await fetchCategories();
+  const categorySelect = document.getElementById("categorie");
 
+  if (categorySelect) {
+      // Vider le <select> avant d'ajouter de nouvelles options
+      categorySelect.innerHTML = '<option value="" disabled selected>Sélectionnez une catégorie</option>';
 
-// Ajouter ici une fonction téléchargement de l'API catégories!!!!!!!!!!!!!!!!!!!!!!!!
+      categories.forEach(category => {
+          const option = document.createElement("option");
+          option.value = category.id;
+          option.textContent = category.name;
+          categorySelect.appendChild(option);
+      });
+  } else {
+      console.error("L'élément <select> avec l'ID 'categorie' n'a pas été trouvé.");
+  }
+}
 
-
-
-
-
-
+// Appel de la fonction pour remplir les options de catégories
+populateCategoryOptions();
 
 
 //####################################################################################
 //UPLOAD - AJOUT PHOTO
 //####################################################################################
-
 
 
 // Fonction upload image et autres champs avec controle des conditions et message d'erreur
@@ -447,7 +476,7 @@ function initializePhotoUpload() {
       const file = event.target.files[0];
       if (file) {
         if (file.size > 1 * 1024 * 1024) {
-          errorElement.textContent = 'Le fichier doit être inférieur à 1 Mo';
+          errorElement.textContent = 'Le fichier doit faire moins de 1 Mo';
           errorElement.style.display = 'block';
           return;
         }
@@ -489,6 +518,10 @@ function initializePhotoUpload() {
     handlePhotoUpload();
   });
 
+
+  // Fonction changer la photo à uploader : clic sur la photo displayed
+
+
   // Fonction pour vérifier si le formulaire d'ajout de photo est valide
   function checkAddPhotoForm() {
     const imageUploaded = document.querySelector('#fenetre-ajout-photo img');
@@ -498,19 +531,35 @@ function initializePhotoUpload() {
 
     if (imageUploaded && title && category) {
       validateButton.style.backgroundColor = '#1d6154';
+      // Ajouter des écouteurs d'événements pour changer le background-color au survol
+      validateButton.addEventListener('mouseover', function() {
+        validateButton.style.backgroundColor = '#0E2F28';
+      });
+      validateButton.addEventListener('mouseout', function() {
+        validateButton.style.backgroundColor = '#1d6154';
+      });
     } else {
       validateButton.style.backgroundColor = '#A7A7A7';
     }
   }
-
 
   // Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
   document.querySelector('input[name="crea-titre-projet"]').addEventListener('input', checkAddPhotoForm);
   document.querySelector('select[name="categorie"]').addEventListener('change', checkAddPhotoForm);
 }
 
+
 // Appeler la fonction pour initialiser la gestion du téléchargement de photo
 initializePhotoUpload();
+
+
+
+
+
+
+
+
+
 
 
 
