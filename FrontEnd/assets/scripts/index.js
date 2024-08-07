@@ -404,54 +404,117 @@ function displayCreaValidationButton() {
 }
 
 
+
+
+
+// Ajouter ici une fonction téléchargement de l'API catégories!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
 //####################################################################################
 //UPLOAD - AJOUT PHOTO
 //####################################################################################
 
 
 
+// Fonction upload image et autres champs avec controle des conditions et message d'erreur
+function initializePhotoUpload() {
+  // Afficher les messages d'erreur
+  const errorElement = document.createElement('p');
+  errorElement.id = 'upload-error';
+  errorElement.style.color = 'red';
+  errorElement.style.display = 'none';
+  errorElement.style.position = 'relative'; // Pour positionner relativement à son parent
+  errorElement.style.top = '-10px'; // Positionner au-dessus de #fenetre-ajout-photo
+  errorElement.style.textAlign = 'center'; // Centrer le texte horizontalement
 
-document.getElementById('bouton-plus-ajouter-photo').addEventListener('click', function() {
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.accept = '.jpg,.png';
-  fileInput.style.display = 'none';
+  // Insérer l'élément d'erreur avant #fenetre-ajout-photo
+  const fenetreAjoutPhoto = document.getElementById('fenetre-ajout-photo');
+  fenetreAjoutPhoto.parentNode.insertBefore(errorElement, fenetreAjoutPhoto);
 
-  fileInput.addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-      if (file.size > 4 * 1024 * 1024) {
-        alert('Le fichier doit être inférieur à 4 Mo');
-        return;
+  function handlePhotoUpload() {
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.jpg,.png';
+    fileInput.style.display = 'none';
+
+    fileInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        if (file.size > 1 * 1024 * 1024) {
+          errorElement.textContent = 'Le fichier doit être inférieur à 1 Mo';
+          errorElement.style.display = 'block';
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = 'Image uploadée';
+          img.style.height = '100%';
+          img.style.width = 'auto';
+          img.style.display = 'block';
+          img.style.margin = 'auto';
+
+          fenetreAjoutPhoto.innerHTML = ''; // Vider le contenu existant
+          fenetreAjoutPhoto.appendChild(img); // Ajouter l'image
+
+          // Cacher les éléments spécifiques
+          document.querySelector('#fenetre-ajout-photo i').style.visibility = 'hidden';
+          document.getElementById('bouton-plus-ajouter-photo').style.visibility = 'hidden';
+          document.querySelector('#fenetre-ajout-photo p').style.visibility = 'hidden';
+
+          // Masquer le message d'erreur
+          errorElement.style.display = 'none';
+        }
+        reader.readAsDataURL(file);
+      } else {
+        errorElement.textContent = 'Le fichier doit être au format .jpg ou .png';
+        errorElement.style.display = 'block';
       }
+    });
 
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const img = document.createElement('img');
-        img.src = e.target.result;
-        img.alt = 'Image uploadée';
-        img.style.height = '100%';
-        img.style.width = 'auto'; // NEW/NEW/NEW : La hauteur de l'image occupe 100% de la hauteur de #fenetre-ajout-photo
-        img.style.display = 'block'; // NEW/NEW/NEW : Afficher le block
-        img.style.margin = 'auto'; // NEW/NEW/NEW : Centré horizontalement
+    fileInput.click();
+  }
 
-        const fenetreAjoutPhoto = document.getElementById('fenetre-ajout-photo');
-        fenetreAjoutPhoto.innerHTML = ''; // NEW/NEW/NEW : Vider le contenu existant
-        fenetreAjoutPhoto.appendChild(img); // NEW/NEW/NEW : Ajouter l'image
-
-        // NEW/NEW/NEW : Cacher les éléments spécifiques
-        document.querySelector('#fenetre-ajout-photo i').style.visibility = 'hidden';
-        document.getElementById('bouton-plus-ajouter-photo').style.visibility = 'hidden';
-        document.querySelector('#fenetre-ajout-photo p').style.visibility = 'hidden';
-      }
-      reader.readAsDataURL(file);
-    } else {
-      alert('Le fichier doit être au format .jpg ou .png');
-    }
+  document.getElementById('bouton-plus-ajouter-photo').addEventListener('click', function() {
+    // Réinitialiser le message d'erreur à chaque clic
+    errorElement.style.display = 'none';
+    handlePhotoUpload();
   });
 
-  fileInput.click();
-});
+  // Fonction pour vérifier si le formulaire d'ajout de photo est valide
+  function checkAddPhotoForm() {
+    const imageUploaded = document.querySelector('#fenetre-ajout-photo img');
+    const title = document.querySelector('input[name="crea-titre-projet"]').value.trim();
+    const category = document.querySelector('select[name="categorie"]').value;
+    const validateButton = document.getElementById('bouton-valider-crea');
+
+    if (imageUploaded && title && category) {
+      validateButton.style.backgroundColor = '#1d6154';
+    } else {
+      validateButton.style.backgroundColor = '#A7A7A7';
+    }
+  }
+
+
+  // Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
+  document.querySelector('input[name="crea-titre-projet"]').addEventListener('input', checkAddPhotoForm);
+  document.querySelector('select[name="categorie"]').addEventListener('change', checkAddPhotoForm);
+}
+
+// Appeler la fonction pour initialiser la gestion du téléchargement de photo
+initializePhotoUpload();
+
+
+
+
 
 
 
