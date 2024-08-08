@@ -8,8 +8,6 @@ const getCategoriesUrl = `${apiUrl}/categories`;
 const loginUrl = `${apiUrl}/users/login`;
 const deleteWorksUrl = `${apiUrl}/works`;
 
-
-
 //####################################################################################
 //RECUPERATION DU DOM
 //####################################################################################
@@ -262,7 +260,7 @@ console.log("Document is ready");
 
       // Ajouter l'événement de clic pour supprimer l'objet
       elementFusionne.addEventListener("click", async (event) => {
-        event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut
+        event.preventDefault(); // Empêcher le comportement par défaut
         await deleteWork(work.id, elementFusionne);
       });
     });
@@ -450,6 +448,40 @@ populateCategoryOptions();
 //UPLOAD - AJOUT PHOTO
 //####################################################################################
 
+  // Appel de la fonction pour configurer le bouton `return-modal-button`
+  setupReturnModalButton();
+
+
+// Fonction pour configurer le bouton `return-modal-button` et gérer l'ouverture de la modale
+function setupReturnModalButton() {
+  // Vérifier si l'information pour ouvrir la modale est stockée dans le localStorage
+  const openModal = localStorage.getItem('openModal');
+  if (openModal === 'true') {
+    // Supprimer l'information du localStorage
+    localStorage.removeItem('openModal');
+    // Ouvrir la modale
+    console.log("Ouverture de la modale après redirection");
+    document.getElementById('modal').style.display = 'block';
+  }
+
+  // Fonction pour gérer le clic sur le bouton `return-modal-button`
+  function handleReturnModalButtonClick(event) {
+    event.preventDefault();
+    // Stocker une information dans le localStorage pour indiquer que la modale doit être ouverte
+    localStorage.setItem('openModal', 'true');
+    // Rediriger vers index.html
+    console.log("Redirection vers index.html avec la modale à ouvrir");
+    window.location.href = 'index.html';
+  }
+
+  // Écouteur d'événement pour le bouton `return-modal-button`
+  const returnModalButton = document.getElementById('return-modal-button');
+  if (returnModalButton) {
+    returnModalButton.addEventListener('click', handleReturnModalButtonClick);
+  } else {
+    console.error("Le bouton return-modal-button n'a pas été trouvé.");
+  }
+}
 
 // Fonction upload image et autres champs avec controle des conditions et message d'erreur
 function initializePhotoUpload() {
@@ -518,10 +550,6 @@ function initializePhotoUpload() {
     handlePhotoUpload();
   });
 
-
-  // Fonction changer la photo à uploader : clic sur la photo displayed
-
-
   // Fonction pour vérifier si le formulaire d'ajout de photo est valide
   function checkAddPhotoForm() {
     const imageUploaded = document.querySelector('#fenetre-ajout-photo img');
@@ -551,17 +579,6 @@ function initializePhotoUpload() {
 
 // Appeler la fonction pour initialiser la gestion du téléchargement de photo
 initializePhotoUpload();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
