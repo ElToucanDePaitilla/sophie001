@@ -8,6 +8,7 @@ const getCategoriesUrl = `${apiUrl}/categories`;
 const loginUrl = `${apiUrl}/users/login`;
 const deleteWorksUrl = `${apiUrl}/works`;
 
+
 //####################################################################################
 //RECUPERATION DU DOM
 //####################################################################################
@@ -445,7 +446,7 @@ populateCategoryOptions();
 
 
 //####################################################################################
-//UPLOAD - AJOUT PHOTO
+//UPLOAD - AJOUT PHOTO - GESTION DU BOUTON
 //####################################################################################
 
   // Appel de la fonction pour configurer le bouton `return-modal-button`
@@ -483,7 +484,7 @@ function setupReturnModalButton() {
   }
 }
 
-// Fonction upload image et autres champs avec controle des conditions et message d'erreur
+// Fonction upload image et autres champs avec contrôle des conditions et message d'erreur
 function initializePhotoUpload() {
   // Afficher les messages d'erreur
   const errorElement = document.createElement('p');
@@ -526,13 +527,11 @@ function initializePhotoUpload() {
           fenetreAjoutPhoto.innerHTML = ''; // Vider le contenu existant
           fenetreAjoutPhoto.appendChild(img); // Ajouter l'image
 
-          // Cacher les éléments spécifiques
-          document.querySelector('#fenetre-ajout-photo i').style.visibility = 'hidden';
-          document.getElementById('bouton-plus-ajouter-photo').style.visibility = 'hidden';
-          document.querySelector('#fenetre-ajout-photo p').style.visibility = 'hidden';
-
           // Masquer le message d'erreur
           errorElement.style.display = 'none';
+
+          // Appel de la fonction pour vérifier l'état du formulaire après le téléchargement de l'image
+          checkAddPhotoForm();
         }
         reader.readAsDataURL(file);
       } else {
@@ -550,39 +549,151 @@ function initializePhotoUpload() {
     handlePhotoUpload();
   });
 
-  // Fonction pour vérifier si le formulaire d'ajout de photo est valide
-  function checkAddPhotoForm() {
-    const imageUploaded = document.querySelector('#fenetre-ajout-photo img');
-    const title = document.querySelector('input[name="crea-titre-projet"]').value.trim();
-    const category = document.querySelector('select[name="categorie"]').value;
-    const validateButton = document.getElementById('bouton-valider-crea');
-
-    if (imageUploaded && title && category) {
-      validateButton.style.backgroundColor = '#1d6154';
-      // Ajouter des écouteurs d'événements pour changer le background-color au survol
-      validateButton.addEventListener('mouseover', function() {
-        validateButton.style.backgroundColor = '#0E2F28';
-      });
-      validateButton.addEventListener('mouseout', function() {
-        validateButton.style.backgroundColor = '#1d6154';
-      });
-    } else {
-      validateButton.style.backgroundColor = '#A7A7A7';
-    }
-  }
-
-  // Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
-  document.querySelector('input[name="crea-titre-projet"]').addEventListener('input', checkAddPhotoForm);
-  document.querySelector('select[name="categorie"]').addEventListener('change', checkAddPhotoForm);
-}
 
 
-// Appeler la fonction pour initialiser la gestion du téléchargement de photo
-initializePhotoUpload();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
   
+// Fonction pour vérifier si le formulaire d'ajout de photo est valide
+function checkAddPhotoForm() {
+  const imageUploaded = document.querySelector('#fenetre-ajout-photo img'); // Vérifie si une image est présente
+  const title = document.querySelector('input[name="crea-titre-projet"]').value.trim(); // Vérifie si le titre est non vide
+  const category = document.querySelector('select[name="categorie"]').value; // Vérifie si une catégorie est sélectionnée
+  const validateButton = document.getElementById('bouton-valider-crea');
+
+  // Conditions pour vérifier que tous les champs sont valides
+  const isImageValid = imageUploaded !== null;
+  const isTitleValid = title.length > 0;
+  const isCategoryValid = category !== '';
+
+  if (isImageValid && isTitleValid && isCategoryValid) {
+    validateButton.style.backgroundColor = '#1d6154';
+    validateButton.disabled = false; // Rendre le bouton "clicable"
+    
+    console.log("Le bouton 'Valider' est maintenant activé et cliquable."); // Log pour indiquer que le bouton est activé
+    console.log("Valeur de validateButton.disabled :", validateButton.disabled); // Log pour afficher la valeur de disabled
+
+    validateButton.addEventListener('mouseover', handleMouseOver);
+    validateButton.addEventListener('mouseout', handleMouseOut);
+
+  } else {
+    validateButton.style.backgroundColor = '#A7A7A7';
+    validateButton.disabled = true; // Désactiver le bouton
+
+    // Supprimer les écouteurs d'événements si le bouton n'est pas cliquable
+    validateButton.removeEventListener('mouseover', handleMouseOver);
+    validateButton.removeEventListener('mouseout', handleMouseOut);
+  }
+}
+
+// Fonction pour gérer le survol (mouseover) du bouton
+function handleMouseOver() {
+  this.style.backgroundColor = '#0E2F28';
+}
+
+// Fonction pour gérer la sortie du survol (mouseout) du bouton
+function handleMouseOut() {
+  this.style.backgroundColor = '#1d6154';
+}
+
+// Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
+document.querySelector('input[name="crea-titre-projet"]').addEventListener('input', checkAddPhotoForm);
+document.querySelector('select[name="categorie"]').addEventListener('change', checkAddPhotoForm);
+document.querySelector('#fenetre-ajout-photo').addEventListener('DOMSubtreeModified', checkAddPhotoForm); // Surveiller les changements dans la div d'ajout de photo
+
+}
+
+// Appeler la fonction pour initialiser la gestion du téléchargement de photo
+initializePhotoUpload();
+
+
+//####################################################################################
+//POST VERS L'API
+//####################################################################################
+
+
+/*
+
+//Envoyer la requête POST
+
+const postWorksUrl = "http://localhost:5678/api/works";
+
+// Fonction pour récupérer l'ID le plus élevé des projets
+async function fetchHighestProjectId() {
+  try {
+    const response = await fetch(getWorksUrl);
+    const projects = await response.json();
+    const highestId = projects.reduce((max, project) => project.id > max ? project.id : max, 0);
+    return highestId;
+  } catch (error) {
+    console.error("Erreur lors de la récupération des projets:", error);
+    return null;
+  }
+}
+
+
+
+
+    // Fonction pour gérer la soumission du formulaire
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      console.log("Formulaire soumis");
+  
+      const title = document.querySelector('input[name="crea-titre-projet"]').value.trim();
+      const categoryId = document.querySelector('select[name="categorie"]').value;
+      const imageInput = document.querySelector('#project-image').files[0];
+  
+      if (!title || !categoryId || !imageInput) {
+        console.error("Veuillez remplir tous les champs du formulaire.");
+        return;
+      }
+  
+      console.log("Titre:", title);
+      console.log("Catégorie ID:", categoryId);
+      console.log("Image sélectionnée:", imageInput);
+    }
+  
+    // Ajouter l'écouteur d'événement au bouton "Valider"
+    const validateButton = document.getElementById("bouton-valider-crea");
+    if (validateButton) {
+      validateButton.addEventListener("click", handleFormSubmit);
+      console.log("Écouteur d'événement ajouté au bouton 'Valider'");
+    } else {
+      console.error("Le bouton 'Valider' n'a pas été trouvé.");
+    }
+
+
+
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

@@ -269,6 +269,18 @@ footer nav ul {
   margin-right: 6em;
 }
 
+#contact input[type="text"],
+#contact input[type="email"],
+#contact textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+
+
+
+
 /*New styles ---------------------------------------------------------------------*/
 
 body {
