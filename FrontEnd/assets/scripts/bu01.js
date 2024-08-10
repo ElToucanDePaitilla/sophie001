@@ -671,33 +671,6 @@ console.log("GLOBAL categoryReadyToPost:", categoryReadyToPost);//OK fonctionne
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 
 //Envoyer la requête POST
@@ -716,8 +689,6 @@ async function fetchHighestProjectId() {
     return null;
   }
 }
-
-
 
 
     // Fonction pour gérer la soumission du formulaire
@@ -751,11 +722,6 @@ async function fetchHighestProjectId() {
 
 
     */
-
-
-
-
-
 
 
 
