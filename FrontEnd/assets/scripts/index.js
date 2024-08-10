@@ -8,7 +8,6 @@ let fileImgReadyToPost = null;
 let titleReadyToPost = "";
 let categoryReadyToPost = null;
 
-
 //####################################################################################
 //RECUPERATION DES API
 //####################################################################################
@@ -20,18 +19,14 @@ const loginUrl = `${apiUrl}/users/login`;
 const deleteWorksUrl = `${apiUrl}/works`;
 const postWorksUrl = `${apiUrl}/works`;
 
-
 //####################################################################################
 //RECUPERATION DU DOM
 //####################################################################################
 
 document.addEventListener("DOMContentLoaded", async function () {
-
-
-
-//####################################################################################
-//RECUPERATION DES CATEGORIES DEPUIS l'API
-//####################################################################################
+  //####################################################################################
+  //RECUPERATION DES CATEGORIES DEPUIS l'API
+  //####################################################################################
 
   async function fetchCategories() {
     try {
@@ -44,9 +39,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
   }
 
-//####################################################################################
-//CREATION DE LA GALERIE
-//####################################################################################
+  //####################################################################################
+  //CREATION DE LA GALERIE
+  //####################################################################################
 
   //Vidage du container .gallery de tous ses projets présents
   function clearGallery() {
@@ -79,6 +74,9 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Récupération des works depuis l'API.
       const response = await fetch(getWorksUrl);
       const works = await response.json();
+      // Afficher le tableau complet des works dans la console
+      console.log("Tableau des travaux récupérés :", works);
+
       const galleryDiv = document.querySelector(".gallery");
       clearGallery();
 
@@ -101,11 +99,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   fetchAndDisplayWorks();
 
-//####################################################################################
-// BOUTONS FILTRES
-//####################################################################################
- 
-//Fonction pour créer les boutons de filtrage des projets.
+  //####################################################################################
+  // BOUTONS FILTRES
+  //####################################################################################
+
+  //Fonction pour créer les boutons de filtrage des projets.
   function createFilterButtons(categories) {
     const filterButtonsContainer = document.getElementById(
       "filter-buttons-container"
@@ -159,9 +157,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     fetchAndDisplayWorks(categoryId);
   }
 
-//####################################################################################
-//FORMULAIRE DE CONNEXION
-//####################################################################################
+  //####################################################################################
+  //FORMULAIRE DE CONNEXION
+  //####################################################################################
 
   // Vérification de l'authentification
   const isAuthenticated = localStorage.getItem("isAuthenticated");
@@ -192,10 +190,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
-//####################################################################################
-//FENETRE MODALE - GALERIE PHOTO
-//####################################################################################
-
+  //####################################################################################
+  //FENETRE MODALE - GALERIE PHOTO
+  //####################################################################################
 
   function initializeModal() {
     //Récupération des éléments du DOM
@@ -318,435 +315,449 @@ document.addEventListener("DOMContentLoaded", async function () {
   clearDeleteGallery();
   displayWorksInGallery();
 
-//####################################################################################
-//FENETRE MODALE - AJOUT PHOTO
-//####################################################################################
+  //####################################################################################
+  //FENETRE MODALE - AJOUT PHOTO
+  //####################################################################################
 
-// Initialisation de la Modale AJOUT PHOTO
-function initializeAddPhotoButton() {
-        // Sélectionner le bouton avec l'ID 'ajouter-une-photo'
-        const addPhotoButton = document.getElementById("ajouter-une-photo");
+  // Initialisation de la Modale AJOUT PHOTO
+  function initializeAddPhotoButton() {
+    // Sélectionner le bouton avec l'ID 'ajouter-une-photo'
+    const addPhotoButton = document.getElementById("ajouter-une-photo");
 
-        if (addPhotoButton) {
-          addPhotoButton.addEventListener("click", function() {
-            showReturnButton(); // Afficher le bouton de retour
-            hideGalleryPhotoTitle(); // Cacher le titre de la galerie photo
-            displayAddPhotoTitle(); // Afficher le titre d'ajout de photo
-            hideDeleteGallery(); // Cacher la galerie de suppression
-            hidePhotoAddButton();// Cacher le bouton "ajouter-une-photo"
-            displayCreaValidationButton()// Afficher le bouton "Valider"
-            displayPhotoContainer();// Afficher le container ajout photo
-          });
-        } else {
-          console.error("Le bouton 'Ajouter une photo' n'a pas été trouvé.");
-        }
-      }
-      initializeAddPhotoButton();
-
-// Fonction pour afficher le bouton de retour lorsque le bouton "Ajouter une photo" est cliqué
-function showReturnButton() {
-          const returnButton = document.getElementById("return-modal-button");
-          if (returnButton) {
-            returnButton.style.visibility = "visible";
-          } else {
-            console.error("Le bouton de retour n'a pas été trouvé.");
-          }
-        }
-
-// Fonction pour masquer le titre "Galerie Photo"
-function hideGalleryPhotoTitle() {
-          const galleryPhotoTitle = document.getElementById("titre-galerie-photo");
-          if (galleryPhotoTitle) {
-            galleryPhotoTitle.style.display = "none";
-          } else {
-            console.error("Le titre 'Galerie photo' n'a pas été trouvé.");
-          }
-        }
-
-// Fonction pour afficher le titre "Ajout photo"
-function displayAddPhotoTitle() {
-          const addPhotoTitle = document.getElementById("titre-ajout-photo");
-          if (addPhotoTitle) {
-            addPhotoTitle.style.display = "flex";
-          } else {
-            console.error("Le titre 'Ajout photo' n'a pas été trouvé.");
-          }
-        }
-
-// Fonction pour masquer la galerie exposant les photos à supprimer
-function hideDeleteGallery() {
-        const deleteGallery = document.getElementById("delete-gallery");
-        if (deleteGallery) {
-          deleteGallery.style.display = "none";
-        } else {
-          console.error("Le 'delete-gallery' n'a pas été trouvé.");
-        }
-      }
-
-// Fonction pour masquer le bouton "Ajouter une photo"
-function hidePhotoAddButton() {
-      const photoAddButton = document.getElementById("ajouter-une-photo");
-      if (photoAddButton) {
-        photoAddButton.style.display = "none";
-      } else {
-        console.error("Le bouton 'ajouter-une-photo' n'a pas été trouvé.");
-      }
+    if (addPhotoButton) {
+      addPhotoButton.addEventListener("click", function () {
+        showReturnButton(); // Afficher le bouton de retour
+        hideGalleryPhotoTitle(); // Cacher le titre de la galerie photo
+        displayAddPhotoTitle(); // Afficher le titre d'ajout de photo
+        hideDeleteGallery(); // Cacher la galerie de suppression
+        hidePhotoAddButton(); // Cacher le bouton "ajouter-une-photo"
+        displayCreaValidationButton(); // Afficher le bouton "Valider"
+        displayPhotoContainer(); // Afficher le container ajout photo
+      });
+    } else {
+      console.error("Le bouton 'Ajouter une photo' n'a pas été trouvé.");
     }
+  }
+  initializeAddPhotoButton();
 
-// Fonction pour afficher le container contenant tous les éléments principaux de la fenêtre modale
-function displayPhotoContainer() {
-      const photoContainer = document.getElementById("container-ajout-photo");
-      if (photoContainer) {
-        photoContainer.style.display = "flex";
-      } else {
-        console.error("'container-ajout-photo' n'a pas été trouvé.");
-      }
+  // Fonction pour afficher le bouton de retour lorsque le bouton "Ajouter une photo" est cliqué
+  function showReturnButton() {
+    const returnButton = document.getElementById("return-modal-button");
+    if (returnButton) {
+      returnButton.style.visibility = "visible";
+    } else {
+      console.error("Le bouton de retour n'a pas été trouvé.");
     }
+  }
 
-// Fonction pour afficher le bouton "Valider"
-function displayCreaValidationButton() {
-      const creaValidationButton = document.getElementById("bouton-valider-crea");
-      if (creaValidationButton) {
-        creaValidationButton.style.display = "flex";
-      } else {
-        console.error("Le bouton 'Valider' n'a pas été trouvé.");
-      }
+  // Fonction pour masquer le titre "Galerie Photo"
+  function hideGalleryPhotoTitle() {
+    const galleryPhotoTitle = document.getElementById("titre-galerie-photo");
+    if (galleryPhotoTitle) {
+      galleryPhotoTitle.style.display = "none";
+    } else {
+      console.error("Le titre 'Galerie photo' n'a pas été trouvé.");
     }
+  }
 
-//Fonction pour récupérer les catégories depuis l'API
-async function fetchCategories() {
-      const apiUrl = "http://localhost:5678/api";
-      const getCategoriesUrl = `${apiUrl}/categories`;
-
-      try {
-          const response = await fetch(getCategoriesUrl);
-          if (!response.ok) {
-              throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
-          }
-          const categories = await response.json();
-          
-          return categories;
-      } catch (error) {
-          console.error("Erreur lors de la récupération des catégories :", error);
-          return [];
-      }
+  // Fonction pour afficher le titre "Ajout photo"
+  function displayAddPhotoTitle() {
+    const addPhotoTitle = document.getElementById("titre-ajout-photo");
+    if (addPhotoTitle) {
+      addPhotoTitle.style.display = "flex";
+    } else {
+      console.error("Le titre 'Ajout photo' n'a pas été trouvé.");
     }
+  }
 
-//Fonction pour créer les éléments <option> et les ajouter au <select>
-async function populateCategoryOptions() {
-      const categories = await fetchCategories();
-      const categorySelect = document.getElementById("categorie");
-
-      if (categorySelect) {
-          // Vider le <select> avant d'ajouter de nouvelles options
-          categorySelect.innerHTML = '<option value="" disabled selected>Sélectionnez une catégorie</option>';
-
-          categories.forEach(category => {
-              const option = document.createElement("option");
-              option.value = category.id;
-              option.textContent = category.name;
-              categorySelect.appendChild(option);
-          });
-      } else {
-          console.error("L'élément <select> avec l'ID 'categorie' n'a pas été trouvé.");
-      }
+  // Fonction pour masquer la galerie exposant les photos à supprimer
+  function hideDeleteGallery() {
+    const deleteGallery = document.getElementById("delete-gallery");
+    if (deleteGallery) {
+      deleteGallery.style.display = "none";
+    } else {
+      console.error("Le 'delete-gallery' n'a pas été trouvé.");
     }
+  }
 
-// Appel de la fonction pour remplir les options de catégories
-populateCategoryOptions();
+  // Fonction pour masquer le bouton "Ajouter une photo"
+  function hidePhotoAddButton() {
+    const photoAddButton = document.getElementById("ajouter-une-photo");
+    if (photoAddButton) {
+      photoAddButton.style.display = "none";
+    } else {
+      console.error("Le bouton 'ajouter-une-photo' n'a pas été trouvé.");
+    }
+  }
 
+  // Fonction pour afficher le container contenant tous les éléments principaux de la fenêtre modale
+  function displayPhotoContainer() {
+    const photoContainer = document.getElementById("container-ajout-photo");
+    if (photoContainer) {
+      photoContainer.style.display = "flex";
+    } else {
+      console.error("'container-ajout-photo' n'a pas été trouvé.");
+    }
+  }
 
-//####################################################################################
-//UPLOAD - AJOUT PHOTO - GESTION DU BOUTON
-//####################################################################################
+  // Fonction pour afficher le bouton "Valider"
+  function displayCreaValidationButton() {
+    const creaValidationButton = document.getElementById("bouton-valider-crea");
+    if (creaValidationButton) {
+      creaValidationButton.style.display = "flex";
+    } else {
+      console.error("Le bouton 'Valider' n'a pas été trouvé.");
+    }
+  }
+
+  //Fonction pour récupérer les catégories depuis l'API
+  async function fetchCategories() {
+    const apiUrl = "http://localhost:5678/api";
+    const getCategoriesUrl = `${apiUrl}/categories`;
+
+    try {
+      const response = await fetch(getCategoriesUrl);
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP ! Statut : ${response.status}`);
+      }
+      const categories = await response.json();
+
+      return categories;
+    } catch (error) {
+      console.error("Erreur lors de la récupération des catégories :", error);
+      return [];
+    }
+  }
+
+  //Fonction pour créer les éléments <option> et les ajouter au <select>
+  async function populateCategoryOptions() {
+    const categories = await fetchCategories();
+    const categorySelect = document.getElementById("categorie");
+
+    if (categorySelect) {
+      // Vider le <select> avant d'ajouter de nouvelles options
+      categorySelect.innerHTML =
+        '<option value="" disabled selected>Sélectionnez une catégorie</option>';
+
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+      });
+    } else {
+      console.error(
+        "L'élément <select> avec l'ID 'categorie' n'a pas été trouvé."
+      );
+    }
+  }
+
+  // Appel de la fonction pour remplir les options de catégories
+  populateCategoryOptions();
+
+  //####################################################################################
+  //UPLOAD - AJOUT PHOTO - GESTION DU BOUTON
+  //####################################################################################
 
   // Appel de la fonction pour configurer le bouton `return-modal-button`
   setupReturnModalButton();
 
+  // Fonction pour configurer le bouton `return-modal-button` et gérer l'ouverture de la modale
+  function setupReturnModalButton() {
+    // Vérifier si l'information pour ouvrir la modale est stockée dans le localStorage
+    const openModal = localStorage.getItem("openModal");
+    if (openModal === "true") {
+      // Supprimer l'information du localStorage
+      localStorage.removeItem("openModal");
+      // Ouvrir la modale
+      document.getElementById("modal").style.display = "block";
+    }
 
-// Fonction pour configurer le bouton `return-modal-button` et gérer l'ouverture de la modale
-function setupReturnModalButton() {
-  // Vérifier si l'information pour ouvrir la modale est stockée dans le localStorage
-  const openModal = localStorage.getItem('openModal');
-  if (openModal === 'true') {
-    // Supprimer l'information du localStorage
-    localStorage.removeItem('openModal');
-    // Ouvrir la modale
-    document.getElementById('modal').style.display = 'block';
+    // Fonction pour gérer le clic sur le bouton `return-modal-button`
+    function handleReturnModalButtonClick(event) {
+      event.preventDefault();
+      // Stocker une information dans le localStorage pour indiquer que la modale doit être ouverte
+      localStorage.setItem("openModal", "true");
+      // Rediriger vers index.html
+      console.log("Redirection vers index.html avec la modale à ouvrir");
+      window.location.href = "index.html";
+    }
+
+    // Écouteur d'événement pour le bouton `return-modal-button`
+    const returnModalButton = document.getElementById("return-modal-button");
+    if (returnModalButton) {
+      returnModalButton.addEventListener("click", handleReturnModalButtonClick);
+    } else {
+      console.error("Le bouton return-modal-button n'a pas été trouvé.");
+    }
   }
 
-  // Fonction pour gérer le clic sur le bouton `return-modal-button`
-  function handleReturnModalButtonClick(event) {
-    event.preventDefault();
-    // Stocker une information dans le localStorage pour indiquer que la modale doit être ouverte
-    localStorage.setItem('openModal', 'true');
-    // Rediriger vers index.html
-    console.log("Redirection vers index.html avec la modale à ouvrir");
-    window.location.href = 'index.html';
-  }
+  // Fonction upload image et autres champs avec contrôle des conditions et message d'erreur
+  function initializePhotoUpload() {
+    // Afficher les messages d'erreur
+    const errorElement = document.createElement("p");
+    errorElement.id = "upload-error";
+    errorElement.style.color = "red";
+    errorElement.style.display = "none";
+    errorElement.style.position = "relative"; // Pour positionner relativement à son parent
+    errorElement.style.top = "-10px"; // Positionner au-dessus de #fenetre-ajout-photo
+    errorElement.style.textAlign = "center"; // Centrer le texte horizontalement
 
-  // Écouteur d'événement pour le bouton `return-modal-button`
-  const returnModalButton = document.getElementById('return-modal-button');
-  if (returnModalButton) {
-    returnModalButton.addEventListener('click', handleReturnModalButtonClick);
-  } else {
-    console.error("Le bouton return-modal-button n'a pas été trouvé.");
-  }
-}
+    // Insérer l'élément d'erreur avant #fenetre-ajout-photo
+    const fenetreAjoutPhoto = document.getElementById("fenetre-ajout-photo");
+    fenetreAjoutPhoto.parentNode.insertBefore(errorElement, fenetreAjoutPhoto);
 
-// Fonction upload image et autres champs avec contrôle des conditions et message d'erreur
-function initializePhotoUpload() {
-  
-  // Afficher les messages d'erreur
-  const errorElement = document.createElement('p');
-  errorElement.id = 'upload-error';
-  errorElement.style.color = 'red';
-  errorElement.style.display = 'none';
-  errorElement.style.position = 'relative'; // Pour positionner relativement à son parent
-  errorElement.style.top = '-10px'; // Positionner au-dessus de #fenetre-ajout-photo
-  errorElement.style.textAlign = 'center'; // Centrer le texte horizontalement
+    // Fonction pour gérer l'upload de la photo
+    function handlePhotoUpload() {
+      const fileInput = document.createElement("input");
+      fileInput.type = "file";
+      fileInput.accept = ".jpg,.png";
+      fileInput.style.display = "none";
 
-  // Insérer l'élément d'erreur avant #fenetre-ajout-photo
-  const fenetreAjoutPhoto = document.getElementById('fenetre-ajout-photo');
-  fenetreAjoutPhoto.parentNode.insertBefore(errorElement, fenetreAjoutPhoto);
-
-  function handlePhotoUpload() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.jpg,.png';
-    fileInput.style.display = 'none';
-
-    fileInput.addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (file) {
+      fileInput.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
           if (file.size > 1 * 1024 * 1024) {
-              errorElement.textContent = 'Le fichier doit faire moins de 1 Mo';
-              errorElement.style.display = 'block';
-              return;
+            errorElement.textContent = "Le fichier doit faire moins de 1 Mo";
+            errorElement.style.display = "block";
+            return;
           }
-  
-          const reader = new FileReader();
-          reader.onload = function(e) {
-              const img = document.createElement('img');
-              img.src = e.target.result;
-              img.style.height = '100%';
-              img.style.width = 'auto';
-              img.style.display = 'block';
-              img.style.margin = 'auto';
-  
-              fenetreAjoutPhoto.innerHTML = ''; // Vider le contenu existant
-              fenetreAjoutPhoto.appendChild(img); // Ajouter l'image
-  
-              // Stock le fichier prêt à être posté dans une variable globale
-              fileImgReadyToPost = file;
-              console.log("LOCAL fichier image :", file);
 
-              localStorage.setItem('fileImgReadyToPost', fileImgReadyToPost);
-              // Masquer le message d'erreur
-              errorElement.style.display = 'none';
-  
-              // Appel de la fonction pour vérifier l'état du formulaire après le téléchargement de l'image
-              checkAddPhotoForm();
-          }
-          reader.readAsDataURL(file);
-      } else {
-          errorElement.textContent = 'Le fichier doit être au format .jpg ou .png';
-          errorElement.style.display = 'block';
-      }
-  });
-  
-    fileInput.click();
-  }
+          // Assigner le fichier directement à la variable globale
+          fileImgReadyToPost = file;
+          console.log("V. LOCALE - Nom du fichier:", fileImgReadyToPost.name);
+          console.log("V. LOCALE - Type de fichier:", fileImgReadyToPost.type);
+          console.log(
+            "V. LOCALE - Taille du fichier:",
+            fileImgReadyToPost.size
+          );
 
-  document.getElementById('bouton-plus-ajouter-photo').addEventListener('click', function() {
-    // Réinitialiser le message d'erreur à chaque clic
-    errorElement.style.display = 'none';
-    handlePhotoUpload();
-  });
+          // (Optionnel) Afficher l'image en prévisualisation
+          const fileUrl = URL.createObjectURL(file);
+          const img = document.createElement("img");
+          img.src = fileUrl;
+          img.style.height = "100%";
+          img.style.width = "auto";
+          img.style.display = "block";
+          img.style.margin = "auto";
+          fenetreAjoutPhoto.innerHTML = "";
+          fenetreAjoutPhoto.appendChild(img);
 
-// Fonction pour vérifier si le formulaire d'ajout de photo est valide
-function checkAddPhotoForm() {
-  
-  let imageUploaded = document.querySelector('#fenetre-ajout-photo img');
- 
-  let title = document.querySelector('input[name="crea-titre-projet"]').value.trim();                       
-   
-  let category = document.querySelector('select[name="categorie"]').value; // Vérifie si une catégorie est sélectionnée                                    
-  
-  const validateButton = document.getElementById('bouton-valider-crea');
+          // Masquer le message d'erreur
+          errorElement.style.display = "none";
 
-  // Conditions pour vérifier que tous les champs sont valides
-  let isImageValid = imageUploaded !== null;
-  let isTitleValid = title.length > 0;
-  let isCategoryValid = category !== '';
+          // Vérifier l'état du formulaire
+          checkAddPhotoForm();
+        } else {
+          errorElement.textContent =
+            "Le fichier doit être au format .jpg ou .png";
+          errorElement.style.display = "block";
+        }
+      });
 
-  if (isImageValid && isTitleValid && isCategoryValid) {
-    validateButton.style.backgroundColor = '#1d6154';
-    validateButton.disabled = false; // Rendre le bouton "clicable"
-    
-    let titleReadyToPost = title;
-    let categoryReadyToPost = category
+      fileInput.click();
+    }
 
-    // Stockage des items dans le local storage
-    localStorage.setItem('titleReadyToPost', titleReadyToPost);
-    localStorage.setItem('categoryReadyToPost', categoryReadyToPost);
-    
-      /*
+    document
+      .getElementById("bouton-plus-ajouter-photo")
+      .addEventListener("click", function () {
+        // Réinitialiser le message d'erreur à chaque clic
+        errorElement.style.display = "none";
+        handlePhotoUpload();
+      });
+
+    // Fonction pour vérifier si le formulaire d'ajout de photo est valide
+    function checkAddPhotoForm() {
+      let imageUploaded = document.querySelector("#fenetre-ajout-photo img");
+
+      let title = document
+        .querySelector('input[name="crea-titre-projet"]')
+        .value.trim();
+
+      let category = document.querySelector('select[name="categorie"]').value; // Vérifie si une catégorie est sélectionnée
+
+      const validateButton = document.getElementById("bouton-valider-crea");
+
+      // Conditions pour vérifier que tous les champs sont valides
+      let isImageValid = imageUploaded !== null;
+      let isTitleValid = title.length > 0;
+      let isCategoryValid = category !== "";
+
+      if (isImageValid && isTitleValid && isCategoryValid) {
+        validateButton.style.backgroundColor = "#1d6154";
+        validateButton.disabled = false; // Rendre le bouton "clicable"
+
+        let titleReadyToPost = title;
+        let categoryReadyToPost = category;
+
+        // Stockage des items dans le local storage
+        localStorage.setItem("titleReadyToPost", titleReadyToPost);
+        localStorage.setItem("categoryReadyToPost", categoryReadyToPost);
+
+        /*
         console.log("Le bouton 'Valider' est maintenant activé et cliquable."); // Log pour indiquer que le bouton est activé
         console.log("Valeur de validateButton.disabled :", validateButton.disabled); // Log pour afficher la valeur de disabled
       */
 
-    validateButton.addEventListener('mouseover', handleMouseOver);
-    validateButton.addEventListener('mouseout', handleMouseOut);
-
-  } else {
-    validateButton.style.backgroundColor = '#A7A7A7';
-    validateButton.disabled = true; // Désactiver le bouton
-
-    // Supprimer les écouteurs d'événements si le bouton n'est pas cliquable
-    validateButton.removeEventListener('mouseover', handleMouseOver);
-    validateButton.removeEventListener('mouseout', handleMouseOut);
-  }
-  prepaPost()
-}
-
-// Fonction pour gérer le survol (mouseover) du bouton
-function handleMouseOver() {
-  this.style.backgroundColor = '#0E2F28';
-}
-
-// Fonction pour gérer la sortie du survol (mouseout) du bouton
-function handleMouseOut() {
-  this.style.backgroundColor = '#1d6154';
-}
-
-// Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
-document.querySelector('input[name="crea-titre-projet"]').addEventListener('input', checkAddPhotoForm);
-document.querySelector('select[name="categorie"]').addEventListener('change', checkAddPhotoForm);
-document.querySelector('#fenetre-ajout-photo').addEventListener('DOMSubtreeModified', checkAddPhotoForm); // Surveiller les changements dans la div d'ajout de photo
-}
-
-// Appeler la fonction pour initialiser la gestion du téléchargement de photo
-initializePhotoUpload();
-
-// Récupération l'ID le plus élevé parmi les projets existants
-
-  try {
-      const response = await fetch(getWorksUrl); // Récupération des projets existants
-      const projects = await response.json();
-      
-      if (projects.length === 0) {
-          idReadyToPost = 1;
+        validateButton.addEventListener("mouseover", handleMouseOver);
+        validateButton.addEventListener("mouseout", handleMouseOut);
       } else {
-          const highestId = projects.reduce((max, project) => Math.max(max, project.id), 0);
-          idReadyToPost = highestId + 1;
-          localStorage.setItem('idReadyToPost', idReadyToPost);
-          console.log("Local HighestId: ", highestId);
-          console.log("Local idReadyToPost: ", idReadyToPost);
+        validateButton.style.backgroundColor = "#A7A7A7";
+        validateButton.disabled = true; // Désactiver le bouton
+
+        // Supprimer les écouteurs d'événements si le bouton n'est pas cliquable
+        validateButton.removeEventListener("mouseover", handleMouseOver);
+        validateButton.removeEventListener("mouseout", handleMouseOut);
       }
-      
-  } catch (error) {
-      console.error("Erreur lors de la récupération des projets:", error);
+      prepaPost();
+    }
+
+    // Fonction pour gérer le survol (mouseover) du bouton
+    function handleMouseOver() {
+      this.style.backgroundColor = "#0E2F28";
+    }
+
+    // Fonction pour gérer la sortie du survol (mouseout) du bouton
+    function handleMouseOut() {
+      this.style.backgroundColor = "#1d6154";
+    }
+
+    // Ajouter des écouteurs d'événements pour vérifier le formulaire à chaque changement
+    document
+      .querySelector('input[name="crea-titre-projet"]')
+      .addEventListener("input", checkAddPhotoForm);
+    document
+      .querySelector('select[name="categorie"]')
+      .addEventListener("change", checkAddPhotoForm);
+    document
+      .querySelector("#fenetre-ajout-photo")
+      .addEventListener("DOMSubtreeModified", checkAddPhotoForm); // Surveiller les changements dans la div d'ajout de photo
   }
-         
 
-//####################################################################################
-//POST VERS L'API
-//####################################################################################
+  // Appeler la fonction pour initialiser la gestion du téléchargement de photo
+  initializePhotoUpload();
 
-// Récupération des items depuis le local storage
-function prepaPost() {
-let idReadyToPost = localStorage.getItem('idReadyToPost');
-let fileImgReadyToPost = localStorage.getItem('fileImgReadyToPost'); // conversion en objet
-let titleReadyToPost = localStorage.getItem('titleReadyToPost');
-let categoryReadyToPost = localStorage.getItem('categoryReadyToPost');
+  // Récupération l'ID le plus élevé parmi les projets existants
 
-// Affichage dans la console pour contrôle
-console.log("GLOBAL idReadyToPost:", idReadyToPost);//OK fonctionne
-console.log("GLOBAL fileImgReadyToPost:", fileImgReadyToPost);//Fonctionne ?????????????????????????????????????
-console.log("GLOBAL titleReadyToPost:", titleReadyToPost);//OK fonctionne
-console.log("GLOBAL categoryReadyToPost:", categoryReadyToPost);//OK fonctionne
-}
-
-// Création de la fonction pour poster les données à l'API
-async function postNewWork() {
-  // Récupération des données stockées dans le localStorage
-  const idReadyToPost = localStorage.getItem('idReadyToPost');
-  const fileImgReadyToPost = localStorage.getItem('fileImgReadyToPost');
-  const titleReadyToPost = localStorage.getItem('titleReadyToPost');
-  const categoryReadyToPost = localStorage.getItem('categoryReadyToPost');
-
-  // Construction de l'objet à envoyer
-  const newWork = {
-      id: idReadyToPost, // Utilisation de l'ID récupéré
-      title: titleReadyToPost, // Titre du projet
-      imageUrl: fileImgReadyToPost, // URL de l'image
-      categoryId: categoryReadyToPost, // ID de la catégorie
-      userId: 1 // ID de l'utilisateur (ici, par défaut à 1)
-  };
-
-  // Envoi de l'objet via l'API
   try {
+    const response = await fetch(getWorksUrl); // Récupération des projets existants
+    const projects = await response.json();
+
+    if (projects.length === 0) {
+      idReadyToPost = 1;
+    } else {
+      const highestId = projects.reduce(
+        (max, project) => Math.max(max, project.id),
+        0
+      );
+      idReadyToPost = highestId + 1;
+      localStorage.setItem("idReadyToPost", idReadyToPost);
+      console.log("V. LOCALE - highestId: ", highestId);
+      console.log("V. LOCALE - idReadyToPost: ", idReadyToPost);
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des projets:", error);
+  }
+
+  //####################################################################################
+  //POST VERS L'API
+  //####################################################################################
+
+  // Récupération des items depuis le local storage
+  function prepaPost() {
+    let idReadyToPost = localStorage.getItem("idReadyToPost");
+    let titleReadyToPost = localStorage.getItem("titleReadyToPost");
+    let categoryReadyToPost = localStorage.getItem("categoryReadyToPost");
+
+    // Affichage dans la console pour contrôle
+    console.log("V. GLOBALE - idReadyToPost:", idReadyToPost); //OK fonctionne
+    console.log("V. GLOBALE - fileImgReadyToPost:", fileImgReadyToPost); //Fonctionne ?????????????????????????????????????
+    // Vérification du contenu de fileImgReadyToPost
+    console.log("V. GLOBALE - Nom du fichier :", fileImgReadyToPost.name); // Affiche le nom du fichier
+    console.log("V. GLOBALE - Type de fichier :", fileImgReadyToPost.type); // Affiche le type de fichier
+    console.log("V. GLOBALE - Taille du fichier :", fileImgReadyToPost.size); // Affiche la taille du fichier en octets
+    console.log("V. GLOBALE - titleReadyToPost:", titleReadyToPost); //OK fonctionne
+    console.log("V. GLOBALE - categoryReadyToPost:", categoryReadyToPost); //OK fonctionne
+  }
+
+  // Création de la fonction pour poster les données à l'API
+  async function postNewWork() {
+    const idReadyToPost = localStorage.getItem("idReadyToPost");
+    const titleReadyToPost = localStorage.getItem("titleReadyToPost");
+    const categoryReadyToPost = localStorage.getItem("categoryReadyToPost");
+    const authToken = localStorage.getItem("authToken");
+
+    if (!fileImgReadyToPost) {
+      console.error("Aucun fichier image prêt à être posté.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("id", idReadyToPost);
+    formData.append("title", titleReadyToPost);
+    formData.append("image", fileImgReadyToPost); // Envoyer l'objet `File`
+    formData.append("categoryId", categoryReadyToPost);
+    formData.append("userId", 1);
+
+    try {
       const response = await fetch(`${apiUrl}/works`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Inclusion du token d'authentification
-          },
-          body: JSON.stringify(newWork)
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${authToken}`, // Ajout du token d'authentification
+        },
+        body: formData,
       });
 
+      const responseData = await response.json();
+      console.log("Réponse du serveur :", responseData);
+
       if (response.ok) {
-          console.log("Nouveau projet ajouté avec succès:", newWork);
+        console.log("Nouveau projet ajouté avec succès :", responseData);
+        // Vous pourriez vouloir ajouter dynamiquement le nouveau projet ici
       } else {
-          console.error("Erreur lors de l'ajout du projet:", response.status);
+        console.error(
+          "Erreur lors de l'ajout du projet :",
+          response.status,
+          responseData
+        );
       }
-  } catch (error) {
-      console.error("Erreur lors de la requête POST:", error);
+    } catch (error) {
+      console.error("Erreur lors de la requête POST :", error);
+    }
+  }
+
+  // Appel de la fonction lors du clic sur le bouton valider
+  document
+    .getElementById("bouton-valider-crea")
+    .addEventListener("click", async function (event) {
+      event.preventDefault();
+      await postNewWork();
+      alert("Le projet a été ajouté avec succès !");
+    });
+
+  /*
+// Vérification du contenu de fileImgReadyToPost
+function verifyFileImgReadyToPost() {
+  const fileImgReadyToPost = localStorage.getItem('fileImgReadyToPost');
+
+  // Affichage du contenu de fileImgReadyToPost dans la console
+  console.log("Contenu de fileImgReadyToPost :", fileImgReadyToPost);
+
+  // Vérification si c'est une URL
+  const isUrl = fileImgReadyToPost.startsWith("http://") || fileImgReadyToPost.startsWith("https://");
+  if (isUrl) {
+      console.log("fileImgReadyToPost est bien une URL.");
+  } else {
+      console.error("fileImgReadyToPost n'est pas une URL valide.");
   }
 }
 
-// Ajouter un écouteur d'événement au bouton "Valider"
-document.getElementById('bouton-valider-crea').addEventListener('click', async function(event) {
-  event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut du bouton
+// Appel de la fonction pour vérifier le contenu
+verifyFileImgReadyToPost();
 
-  // Appel de la fonction pour poster le nouveau travail
-  await postNewWork();
+*/
 
-  // Feedback à l'utilisateur après l'ajout du projet
-  alert('Le projet a été ajouté avec succès !');
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
+  /*
 
 //Envoyer la requête POST
 
@@ -799,17 +810,4 @@ async function fetchHighestProjectId() {
 
 
     */
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
