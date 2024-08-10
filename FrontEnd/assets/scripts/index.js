@@ -18,6 +18,7 @@ const getWorksUrl = `${apiUrl}/works`;
 const getCategoriesUrl = `${apiUrl}/categories`;
 const loginUrl = `${apiUrl}/users/login`;
 const deleteWorksUrl = `${apiUrl}/works`;
+const postWorksUrl = `${apiUrl}/works`;
 
 
 //####################################################################################
@@ -628,8 +629,8 @@ document.querySelector('#fenetre-ajout-photo').addEventListener('DOMSubtreeModif
 // Appeler la fonction pour initialiser la gestion du téléchargement de photo
 initializePhotoUpload();
 
-// Fonction pour récupérer l'ID le plus élevé parmi les projets existants
-async function getNextProjectId() {
+// Récupération l'ID le plus élevé parmi les projets existants
+
   try {
       const response = await fetch(getWorksUrl); // Récupération des projets existants
       const projects = await response.json();
@@ -639,16 +640,15 @@ async function getNextProjectId() {
       } else {
           const highestId = projects.reduce((max, project) => Math.max(max, project.id), 0);
           idReadyToPost = highestId + 1;
+          localStorage.setItem('idReadyToPost', idReadyToPost);
+          console.log("Local HighestId: ", highestId);
+          console.log("Local idReadyToPost: ", idReadyToPost);
       }
       
   } catch (error) {
       console.error("Erreur lors de la récupération des projets:", error);
   }
-      localStorage.setItem('idReadyToPost', idReadyToPost);    
-}
-
-getNextProjectId()
-
+         
 
 //####################################################################################
 //POST VERS L'API
@@ -668,6 +668,54 @@ console.log("GLOBAL titleReadyToPost:", titleReadyToPost);//OK fonctionne
 console.log("GLOBAL categoryReadyToPost:", categoryReadyToPost);//OK fonctionne
 }
 
+// Création de la fonction pour poster les données à l'API
+async function postNewWork() {
+  // Récupération des données stockées dans le localStorage
+  const idReadyToPost = localStorage.getItem('idReadyToPost');
+  const fileImgReadyToPost = localStorage.getItem('fileImgReadyToPost');
+  const titleReadyToPost = localStorage.getItem('titleReadyToPost');
+  const categoryReadyToPost = localStorage.getItem('categoryReadyToPost');
+
+  // Construction de l'objet à envoyer
+  const newWork = {
+      id: idReadyToPost, // Utilisation de l'ID récupéré
+      title: titleReadyToPost, // Titre du projet
+      imageUrl: fileImgReadyToPost, // URL de l'image
+      categoryId: categoryReadyToPost, // ID de la catégorie
+      userId: 1 // ID de l'utilisateur (ici, par défaut à 1)
+  };
+
+  // Envoi de l'objet via l'API
+  try {
+      const response = await fetch(`${apiUrl}/works`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('authToken')}` // Inclusion du token d'authentification
+          },
+          body: JSON.stringify(newWork)
+      });
+
+      if (response.ok) {
+          console.log("Nouveau projet ajouté avec succès:", newWork);
+      } else {
+          console.error("Erreur lors de l'ajout du projet:", response.status);
+      }
+  } catch (error) {
+      console.error("Erreur lors de la requête POST:", error);
+  }
+}
+
+// Ajouter un écouteur d'événement au bouton "Valider"
+document.getElementById('bouton-valider-crea').addEventListener('click', async function(event) {
+  event.preventDefault(); // NEW/NEW/NEW : Empêcher le comportement par défaut du bouton
+
+  // Appel de la fonction pour poster le nouveau travail
+  await postNewWork();
+
+  // Feedback à l'utilisateur après l'ajout du projet
+  alert('Le projet a été ajouté avec succès !');
+});
 
 
 
